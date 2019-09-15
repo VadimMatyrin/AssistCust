@@ -15,9 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{984859
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastucture", "Infrastucture", "{096FE30F-D35D-4712-8EAD-BC1F12A520F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssistCust.Domain", "AssistCust.Domain\AssistCust.Domain.csproj", "{98A20B28-908E-418E-8456-2A24B8CFFED9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssistCust.Domain", "AssistCust.Domain\AssistCust.Domain.csproj", "{98A20B28-908E-418E-8456-2A24B8CFFED9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssistCust.Persistance", "AssistCust.Persistance\AssistCust.Persistance.csproj", "{841D2404-34E0-43F3-8731-C80A87E16F81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssistCust.Persistance", "AssistCust.Persistance\AssistCust.Persistance.csproj", "{841D2404-34E0-43F3-8731-C80A87E16F81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssistCust.Application", "AssistCust.Application\AssistCust.Application.csproj", "{979E0F32-C582-4FA1-A923-3ED6AE882B9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{841D2404-34E0-43F3-8731-C80A87E16F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{841D2404-34E0-43F3-8731-C80A87E16F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{841D2404-34E0-43F3-8731-C80A87E16F81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{979E0F32-C582-4FA1-A923-3ED6AE882B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{979E0F32-C582-4FA1-A923-3ED6AE882B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{979E0F32-C582-4FA1-A923-3ED6AE882B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{979E0F32-C582-4FA1-A923-3ED6AE882B9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{096FE30F-D35D-4712-8EAD-BC1F12A520F0} = {26B53544-308A-41F4-9471-D60B7720AC06}
 		{98A20B28-908E-418E-8456-2A24B8CFFED9} = {BD8CCCE9-B4F5-443D-833E-6E503EA8A869}
 		{841D2404-34E0-43F3-8731-C80A87E16F81} = {096FE30F-D35D-4712-8EAD-BC1F12A520F0}
+		{979E0F32-C582-4FA1-A923-3ED6AE882B9D} = {BD8CCCE9-B4F5-443D-833E-6E503EA8A869}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB3D3467-71A1-4A74-A826-5835BB1B6365}
