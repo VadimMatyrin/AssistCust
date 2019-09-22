@@ -1,6 +1,9 @@
-﻿namespace AssistCust.Application.Products.Queries.GetProduct
+﻿using AssistCust.Application.Products.Queries.ViewModels;
+using MediatR;
+
+namespace AssistCust.Application.Products.Queries.GetProduct
 {
-    public class GetProductQuery : MediatR.IRequest<ProductViewModel>
+    public class GetProductQuery : IRequest<ProductViewModel>
     {
         public int Id { get; set; }
     }

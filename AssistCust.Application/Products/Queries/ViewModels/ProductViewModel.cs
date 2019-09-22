@@ -2,7 +2,7 @@
 using AssistCust.Application.Interfaces.Mapping;
 using AssistCust.Domain.Entities;
 
-namespace AssistCust.Application.Products.Queries.GetProduct
+namespace AssistCust.Application.Products.Queries.ViewModels
 {
     public class ProductViewModel : IHaveCustomMapping
     {

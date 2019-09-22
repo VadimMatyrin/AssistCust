@@ -6,10 +6,12 @@ using System.Linq;
 using AssistCust.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using AssistCust.Application.Exceptions;
+using AssistCust.Application.Products.Queries.ViewModels;
+using MediatR;
 
 namespace AssistCust.Application.Products.Queries.GetProduct
 {
-    public class GetProductQueryHandler : MediatR.IRequestHandler<GetProductQuery, ProductViewModel>
+    public class GetProductQueryHandler : IRequestHandler<GetProductQuery, ProductViewModel>
     {
         private readonly IAssistDbContext _context;
         private readonly IMapper _mapper;
