@@ -1,10 +1,11 @@
 ﻿using System;
+using AssistCust.Application.Interfaces;
 using AssistCust.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AssistCust.Persistance
 {
-    public class AssistCustDbContext: DbContext
+    public class AssistCustDbContext: DbContext, IAssistDbContext
     {
         public DbSet<Company>  Companies { get; set; }
         public DbSet<CompanyShop> CompanyShops { get; set; }
