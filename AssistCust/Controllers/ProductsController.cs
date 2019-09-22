@@ -1,4 +1,5 @@
 ﻿using AssistCust.Application.Products.Commands.CreateProduct;
+using AssistCust.Application.Products.Commands.DeleteProduct;
 using AssistCust.Application.Products.Queries.GetAllProductsByCompany;
 using AssistCust.Application.Products.Queries.GetProduct;
 using AssistCust.Application.Products.Queries.ViewModels;
@@ -23,10 +24,9 @@ namespace AssistCust.Controllers
         }
 
         [HttpPost]
-        public async Task<int> Create([FromBody] CreateProductCommand command)
+        public Task<int> Create([FromBody] CreateProductCommand command)
         {
-            var productId = await Mediator.Send(command);
-            return productId;
+            return Mediator.Send(command);
         }
 
         [HttpPut]
@@ -34,6 +34,15 @@ namespace AssistCust.Controllers
         public async Task<IActionResult> Update([FromBody] UpdateProductCommand command)
         {
             await Mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await Mediator.Send(new DeleteProductCommand { Id = id });
             return NoContent();
         }
     }
