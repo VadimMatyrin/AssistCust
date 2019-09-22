@@ -1,4 +1,6 @@
-﻿using AssistCust.Domain.Entities;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using AssistCust.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AssistCust.Application.Interfaces
@@ -11,5 +13,6 @@ namespace AssistCust.Application.Interfaces
         DbSet<Purchase> Purchases { get; set; }
         DbSet<PurchaseDetail> PurchaseDetails { get; set; }
         DbSet<User> Users { get; set; }
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

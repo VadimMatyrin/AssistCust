@@ -1,4 +1,5 @@
-﻿using AssistCust.Application.Products.Queries.GetAllProductsByCompany;
+﻿using AssistCust.Application.Products.Commands.CreateProduct;
+using AssistCust.Application.Products.Queries.GetAllProductsByCompany;
 using AssistCust.Application.Products.Queries.GetProduct;
 using AssistCust.Application.Products.Queries.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,17 @@ namespace AssistCust.Controllers
         }
 
         [HttpGet("{id}")]
-        public Task<ProductsListViewModel> GetProductsByCompany(int id)
+        public Task<ProductsListViewModel> GetAllProductsByCompany(int id)
         {
             return Mediator.Send(new GetAllProductsByCompanyQuery { CompanyId = id });
+        }
+
+        [HttpPost]
+        public async Task<int> Create([FromBody] CreateProductCommand command)
+        {
+            var productId = await Mediator.Send(command);
+
+            return productId;
         }
     }
 }

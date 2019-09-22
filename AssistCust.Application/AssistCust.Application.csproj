@@ -14,8 +14,4 @@
     <ProjectReference Include="..\AssistCust.Domain\AssistCust.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Products\Commands\" />
-  </ItemGroup>
-
 </Project>
