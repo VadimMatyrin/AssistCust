@@ -26,8 +26,13 @@ namespace AssistCust.Persistance.Configurations
             builder.HasOne(e => e.Company)
                 .WithMany(e => e.CompanyShops)
                 .HasForeignKey(d => d.CompanyId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .IsRequired();
+
+            builder.HasOne(e => e.User)
+             .WithMany(e => e.CompanyShops)
+             .HasForeignKey(d => d.UserId)
+             .IsRequired()
+             .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

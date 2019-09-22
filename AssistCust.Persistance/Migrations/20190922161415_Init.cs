@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AssistCust.Persistance.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +19,7 @@ namespace AssistCust.Persistance.Migrations
                     Username = table.Column<string>(maxLength: 25, nullable: false),
                     PhoneNumber = table.Column<string>(maxLength: 15, nullable: false),
                     Password = table.Column<string>(maxLength: 20, nullable: false),
-                    RegistrationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 9, 22, 9, 59, 54, 306, DateTimeKind.Utc).AddTicks(5576)),
+                    RegistrationDate = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 9, 22, 16, 14, 15, 604, DateTimeKind.Utc).AddTicks(7099)),
                     Token = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -59,7 +59,7 @@ namespace AssistCust.Persistance.Migrations
                     City = table.Column<string>(maxLength: 25, nullable: false),
                     AddressField1 = table.Column<string>(maxLength: 50, nullable: false),
                     AddressField2 = table.Column<string>(maxLength: 25, nullable: false),
-                    ManagerId = table.Column<int>(nullable: true),
+                    UserId = table.Column<int>(nullable: false),
                     CompanyId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -70,10 +70,10 @@ namespace AssistCust.Persistance.Migrations
                         column: x => x.CompanyId,
                         principalTable: "Companies",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CompanyShops_Users_ManagerId",
-                        column: x => x.ManagerId,
+                        name: "FK_CompanyShops_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -108,7 +108,7 @@ namespace AssistCust.Persistance.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<int>(nullable: false),
                     CompanyShopId = table.Column<int>(nullable: false),
-                    PurchaseTime = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 9, 22, 9, 59, 54, 302, DateTimeKind.Utc).AddTicks(6))
+                    PurchaseTime = table.Column<DateTime>(nullable: false, defaultValue: new DateTime(2019, 9, 22, 16, 14, 15, 599, DateTimeKind.Utc).AddTicks(5873))
                 },
                 constraints: table =>
                 {
@@ -165,9 +165,9 @@ namespace AssistCust.Persistance.Migrations
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompanyShops_ManagerId",
+                name: "IX_CompanyShops_UserId",
                 table: "CompanyShops",
-                column: "ManagerId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CompanyId",

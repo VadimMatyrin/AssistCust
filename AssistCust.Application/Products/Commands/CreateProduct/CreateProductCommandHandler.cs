@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AssistCust.Application.Products.Commands.CreateProduct
 {
-    class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, int>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, int>
     {
         private readonly IAssistDbContext _context;
         public CreateProductCommandHandler(IAssistDbContext context)

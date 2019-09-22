@@ -13,7 +13,8 @@ namespace AssistCust.Domain.Entities
         public string City { get; set; }
         public string AddressField1 { get; set; }
         public string AddressField2 { get; set; }
-        public User Manager { get; set; } 
+        public int UserId { get; set; }
+        public User User { get; set; } 
         public int CompanyId { get; set; }
         public Company Company { get; set; }
         public virtual ICollection<Purchase> Purchases { get; set; }

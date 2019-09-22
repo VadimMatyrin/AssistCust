@@ -2,6 +2,7 @@
 using AssistCust.Application.Products.Queries.GetAllProductsByCompany;
 using AssistCust.Application.Products.Queries.GetProduct;
 using AssistCust.Application.Products.Queries.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -25,8 +26,15 @@ namespace AssistCust.Controllers
         public async Task<int> Create([FromBody] CreateProductCommand command)
         {
             var productId = await Mediator.Send(command);
-
             return productId;
+        }
+
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> Update([FromBody] UpdateProductCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
         }
     }
 }

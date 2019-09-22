@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AssistCust.Persistance.Migrations
 {
     [DbContext(typeof(AssistCustDbContext))]
-    [Migration("20190922095954_init")]
-    partial class init
+    [Migration("20190922161415_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,19 +62,19 @@ namespace AssistCust.Persistance.Migrations
 
                     b.Property<int>("CompanyId");
 
-                    b.Property<int?>("ManagerId");
-
                     b.Property<string>("ShopName")
                         .IsRequired()
                         .HasMaxLength(15);
 
                     b.Property<string>("State");
 
+                    b.Property<int>("UserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("ManagerId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("CompanyShops");
                 });
@@ -112,7 +112,7 @@ namespace AssistCust.Persistance.Migrations
 
                     b.Property<DateTime>("PurchaseTime")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2019, 9, 22, 9, 59, 54, 302, DateTimeKind.Utc).AddTicks(6));
+                        .HasDefaultValue(new DateTime(2019, 9, 22, 16, 14, 15, 599, DateTimeKind.Utc).AddTicks(5873));
 
                     b.Property<int>("UserId");
 
@@ -170,7 +170,7 @@ namespace AssistCust.Persistance.Migrations
 
                     b.Property<DateTime>("RegistrationDate")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValue(new DateTime(2019, 9, 22, 9, 59, 54, 306, DateTimeKind.Utc).AddTicks(5576));
+                        .HasDefaultValue(new DateTime(2019, 9, 22, 16, 14, 15, 604, DateTimeKind.Utc).AddTicks(7099));
 
                     b.Property<string>("Token");
 
@@ -194,11 +194,12 @@ namespace AssistCust.Persistance.Migrations
                 {
                     b.HasOne("AssistCust.Domain.Entities.Company", "Company")
                         .WithMany("CompanyShops")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("AssistCust.Domain.Entities.User", "Manager")
-                        .WithMany()
-                        .HasForeignKey("ManagerId");
+                    b.HasOne("AssistCust.Domain.Entities.User", "User")
+                        .WithMany("CompanyShops")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("AssistCust.Domain.Entities.Product", b =>
