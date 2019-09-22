@@ -23,10 +23,10 @@ namespace AssistCust.Persistance.Configurations
             builder.Property(e => e.City).IsRequired()
                 .HasMaxLength(25);
 
-            builder.Property(e => e.Company).IsRequired();
             builder.HasOne(e => e.Company)
                 .WithMany(e => e.CompanyShops)
                 .HasForeignKey(d => d.CompanyId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }

@@ -16,10 +16,10 @@ namespace AssistCust.Persistance.Configurations
                 .IsRequired()
                 .HasMaxLength(50);
 
-            builder.Property(e => e.Company).IsRequired();
             builder.HasOne(e => e.Company)
                 .WithMany(e => e.Products)
                 .HasForeignKey(d => d.CompanyId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }

@@ -14,7 +14,7 @@ namespace AssistCust.Persistence.Infrastructure
 
         public TContext CreateDbContext(string[] args)
         {
-            var basePath = Directory.GetCurrentDirectory() + string.Format("{0}..{0}AssistCustDatabase", Path.DirectorySeparatorChar);
+            var basePath = Directory.GetCurrentDirectory() + string.Format("{0}..{0}AssistCust", Path.DirectorySeparatorChar);
             return Create(basePath, Environment.GetEnvironmentVariable(AspNetCoreEnvironment));
         }
 

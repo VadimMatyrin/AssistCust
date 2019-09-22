@@ -12,7 +12,10 @@ namespace AssistCust.Persistance.Configurations
                 .IsRequired()
                 .HasMaxLength(15);
 
-            builder.Property(e => e.CreatedBy).IsRequired();
+            builder.HasOne(e => e.User)
+                .WithMany(e => e.Companies)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

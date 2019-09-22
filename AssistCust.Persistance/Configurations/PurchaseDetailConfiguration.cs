@@ -12,13 +12,10 @@ namespace AssistCust.Persistance.Configurations
             builder.Property(e => e.Amount)
                 .IsRequired();
 
-            builder.Property(e => e.Product)
-               .IsRequired();
-
-            builder.Property(e => e.Product).IsRequired();
             builder.HasOne(e => e.Product)
                 .WithMany(e => e.PurchaseDetails)
                 .HasForeignKey(d => d.ProductId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.ClientSetNull); ;
         }
     }

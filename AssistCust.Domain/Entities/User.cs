@@ -14,6 +14,7 @@ namespace AssistCust.Domain.Entities
         public string Password { get; set; }
         public DateTime RegistrationDate { get; set; }
         public string Token { get; set; }
+        public virtual ICollection<Company> Companies { get; set; }
         public virtual ICollection<Purchase> Purchases { get; set; }
     }
 }

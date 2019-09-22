@@ -13,16 +13,16 @@ namespace AssistCust.Persistance.Configurations
                 .IsRequired()
                 .HasDefaultValue(DateTime.UtcNow);
 
-            builder.Property(e => e.User).IsRequired();
             builder.HasOne(e => e.User)
                 .WithMany(e => e.Purchases)
                 .HasForeignKey(d => d.UserId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.ClientSetNull); ;
 
-            builder.Property(e => e.CompanyShop).IsRequired();
             builder.HasOne(e => e.CompanyShop)
                 .WithMany(e => e.Purchases)
                 .HasForeignKey(d => d.CompanyShopId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
