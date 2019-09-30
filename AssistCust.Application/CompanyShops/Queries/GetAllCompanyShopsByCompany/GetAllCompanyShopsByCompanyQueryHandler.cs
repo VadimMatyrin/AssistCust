@@ -27,7 +27,7 @@ namespace AssistCust.Application.CompanyShops.Queries.GetAllCompanyShopsByCompan
 
             var model = new CompanyShopsListViewModel
             {
-                Products = _mapper.Map<IEnumerable<CompanyShopViewModel>>(shops)
+                CompanyShops = _mapper.Map<IEnumerable<CompanyShopViewModel>>(shops)
             };
 
             return model;

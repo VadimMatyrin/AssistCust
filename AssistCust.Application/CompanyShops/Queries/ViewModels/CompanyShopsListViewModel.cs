@@ -4,6 +4,6 @@ namespace AssistCust.Application.CompanyShops.Queries.ViewModels
 {
     public class CompanyShopsListViewModel
     {
-        public IEnumerable<CompanyShopViewModel> Products { get; set; }
+        public IEnumerable<CompanyShopViewModel> CompanyShops { get; set; }
     }
 }
