@@ -13,11 +13,8 @@ namespace AssistCust.Application.Products.Queries.ViewModels
 
         public void CreateMappings(Profile configuration)
         {
-            configuration.CreateMap<Product, ProductViewModel>()
-               .ForMember(pDTO => pDTO.Id, opt => opt.MapFrom(p => p.Id))
-               .ForMember(pDTO => pDTO.Name, opt => opt.MapFrom(p => p.Name))
-               .ForMember(pDTO => pDTO.Description, opt => opt.MapFrom(p => p.Description))
-               .ForMember(pDTO => pDTO.CompanyId, opt => opt.MapFrom(p => p.CompanyId));
+            configuration.CreateMap<Product, ProductViewModel>();
+            configuration.CreateMap<ProductViewModel, Product>();
         }
     }
 }
