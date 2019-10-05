@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace AssistCust.Application.Purchases.Commands.UpdatePurchase
 {
-    public class UpdateProductCommandHandler : IRequestHandler<UpdatePurchaseCommand, Unit>
+    public class UpdatePurchaseCommandHandler : IRequestHandler<UpdatePurchaseCommand, Unit>
     {
         private readonly IAssistDbContext _context;
-        public UpdateProductCommandHandler(IAssistDbContext context)
+        public UpdatePurchaseCommandHandler(IAssistDbContext context)
         {
             _context = context;
         }
