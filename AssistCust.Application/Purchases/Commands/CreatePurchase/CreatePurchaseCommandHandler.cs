@@ -2,7 +2,6 @@
 using AssistCust.Domain.Entities;
 using AutoMapper;
 using MediatR;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 

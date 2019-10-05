@@ -1,10 +1,5 @@
-﻿using AssistCust.Application.Interfaces.Mapping;
-using AssistCust.Application.Products.Queries.ViewModels;
-using AssistCust.Domain.Entities;
-using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using System;
-using System.Collections.Generic;
 
 namespace AssistCust.Application.Purchases.Commands.CreatePurchase
 {
