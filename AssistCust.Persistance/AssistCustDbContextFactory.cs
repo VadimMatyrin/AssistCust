@@ -1,13 +1,13 @@
-﻿using AssistCust.Persistence.Infrastructure;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore.Design;
 
 namespace AssistCust.Persistance
 {
-    public class AssistCustDbContextFactory : DesignTimeDbContextFactoryBase<AssistCustDbContext>
+    public class AssistCustDbContextFactory : IDesignTimeDbContextFactory<AssistCustDbContext> 
     {
-        protected override AssistCustDbContext CreateNewInstance(DbContextOptions<AssistCustDbContext> options)
+        public AssistCustDbContext CreateDbContext(string[] args)
         {
-            return new AssistCustDbContext(options);
+            var resolver = new DependencyResolver.DependencyResolver();
+            return resolver.ServiceProvider.GetService(typeof(AssistCustDbContext)) as AssistCustDbContext;
         }
     }
 }

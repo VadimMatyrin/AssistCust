@@ -4,14 +4,16 @@ using AssistCust.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AssistCust.Persistance.Migrations
 {
     [DbContext(typeof(AssistCustDbContext))]
-    partial class AssistCustDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191014072510_Init-with-auth")]
+    partial class Initwithauth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,7 +133,7 @@ namespace AssistCust.Persistance.Migrations
                     b.Property<DateTime>("PurchaseTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2019, 10, 14, 7, 53, 21, 449, DateTimeKind.Utc).AddTicks(40));
+                        .HasDefaultValue(new DateTime(2019, 10, 14, 7, 25, 9, 801, DateTimeKind.Utc).AddTicks(7));
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -191,10 +193,14 @@ namespace AssistCust.Persistance.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -222,7 +228,7 @@ namespace AssistCust.Persistance.Migrations
                     b.Property<DateTime>("RegistrationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2019, 10, 14, 7, 53, 21, 461, DateTimeKind.Utc).AddTicks(4826));
+                        .HasDefaultValue(new DateTime(2019, 10, 14, 7, 25, 9, 810, DateTimeKind.Utc).AddTicks(3690));
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

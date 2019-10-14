@@ -5,6 +5,6 @@ namespace AssistCust.Application.Purchases.Queries.GetAllPurchasesByUser
 {
     public class GetAllPurchasesByUserQuery : IRequest<PurchaseListViewModel>
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

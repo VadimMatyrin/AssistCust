@@ -9,7 +9,7 @@ namespace AssistCust.Domain.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
         public virtual ICollection<CompanyShop> CompanyShops { get; set; }
         public virtual ICollection<Product> Products { get; set; }

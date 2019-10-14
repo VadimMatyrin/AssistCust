@@ -7,7 +7,7 @@ namespace AssistCust.Domain.Entities
     public class Purchase
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
         public int CompanyShopId { get; set; }
         public CompanyShop CompanyShop { get; set; }

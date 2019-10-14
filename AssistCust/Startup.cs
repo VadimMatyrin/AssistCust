@@ -1,11 +1,8 @@
 using MediatR;
-using MediatR.Pipeline;
 using AssistCust.Application.Interfaces;
 using AssistCust.Persistance;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +12,8 @@ using System.Reflection;
 using AssistCust.Application.Infrastructure.Automapper;
 using AutoMapper;
 using Microsoft.Extensions.Hosting;
+using AssistCust.Domain.Entities;
+using Microsoft.AspNetCore.Authentication;
 
 namespace AssistCust
 {
@@ -41,7 +40,17 @@ namespace AssistCust
             services.AddDbContext<IAssistDbContext, AssistCustDbContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("AssistCustDatabase")));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddDefaultIdentity<User>()
+              .AddEntityFrameworkStores<AssistCustDbContext>();
+
+            services.AddIdentityServer()
+                .AddApiAuthorization<User, AssistCustDbContext>();
+
+            services.AddAuthentication()
+                .AddIdentityServerJwt();
+
+            services.AddControllersWithViews();
+            services.AddRazorPages();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -54,6 +63,7 @@ namespace AssistCust
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,12 +87,15 @@ namespace AssistCust
 
             app.UseRouting();
 
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
+            app.UseAuthentication();
+            app.UseIdentityServer();
+            app.UseAuthorization();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

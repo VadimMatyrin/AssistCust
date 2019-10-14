@@ -9,6 +9,6 @@ namespace AssistCust.Application.Companies.Commands.CreateCompany
     {
         public string Name { get; set; }
         public string Country { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

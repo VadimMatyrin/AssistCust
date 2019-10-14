@@ -8,7 +8,7 @@ namespace AssistCust.Persistance
 {
     public class AssistCustInitializer
     {
-        private readonly List<int> _userIds = new List<int>();
+        private readonly List<string> _userIds = new List<string>();
         private readonly List<int> _companiesIds = new List<int>();
         private readonly List<int> _shopIds = new List<int>();
         private readonly List<int> _productIds = new List<int>();
@@ -38,10 +38,9 @@ namespace AssistCust.Persistance
         {
             var users = new[]
             {
-                new User { FirstName = "Vadym", LastName = "Matyrin", PhoneNumber = "+380999999999", Username = "vadym_matyrin", Password = "12345678"},
-                new User { FirstName = "Dmytro", LastName = "Striha", PhoneNumber = "+380503003030", Username = "dmitry_striha", Password = "12345678"},
+                new User { FirstName = "Vadym", LastName = "Matyrin", PhoneNumber = "+380999999999", UserName = "vadym_matyrin"},
+                new User { FirstName = "Dmytro", LastName = "Striha", PhoneNumber = "+380503003030", UserName = "dmitry_striha"},
             };
-
             context.Users.AddRange(users);
             context.SaveChanges();
 
