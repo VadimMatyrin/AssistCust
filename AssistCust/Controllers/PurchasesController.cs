@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using AssistCust.Application.Purchases.Commands.UpdatePurchase;
+using AssistCust.Application.Purchases.Queries.GetAllPurchasesByShop;
 
 namespace AssistCust.Controllers
 {
@@ -22,6 +23,12 @@ namespace AssistCust.Controllers
         public Task<PurchaseListViewModel> GetAllPurchasesByUser(string id)
         {
             return Mediator.Send(new GetAllPurchasesByUserQuery { UserId = id });
+        }
+
+        [HttpGet("{id}")]
+        public Task<PurchaseListViewModel> GetAllPurchasesByShop(int id)
+        {
+            return Mediator.Send(new GetAllPurchasesByShopQuery { ShopId = id });
         }
 
         [HttpPost]

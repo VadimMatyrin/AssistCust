@@ -12,7 +12,7 @@ namespace AssistCust.Application.CompanyShops.Queries.ViewModels
         public string City { get; set; }
         public string AddressField1 { get; set; }
         public string AddressField2 { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int CompanyId { get; set; }
 
         public void CreateMappings(Profile configuration)
