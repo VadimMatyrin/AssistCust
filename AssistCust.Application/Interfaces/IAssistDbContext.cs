@@ -13,6 +13,7 @@ namespace AssistCust.Application.Interfaces
         DbSet<Purchase> Purchases { get; set; }
         DbSet<PurchaseDetail> PurchaseDetails { get; set; }
         DbSet<User> Users { get; set; }
+        DbSet<AttentionRequest> AttentionRequests { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

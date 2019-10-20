@@ -62,5 +62,24 @@ namespace AssistCust.Application.Services
 
             return false;
         }
+
+        public async Task<bool> IsAttentionRequestCreatorAsync(int attentionRequestId)
+        {
+            var isAttentionCreator = await _context.AttentionRequests.AnyAsync(c => c.Id == attentionRequestId && c.SenderId == UserId);
+            return isAttentionCreator;
+        }
+
+        public async Task<bool> IsAttentionRequestCreatorOrShopManagerAsync(int attentionRequestId)
+        {
+            var isAttentionCreator = await IsAttentionRequestCreatorAsync(attentionRequestId);
+            if (isAttentionCreator)
+                return true;
+
+            var shopId = await _context.AttentionRequests.Where(p => p.Id == attentionRequestId).Select(p => p.CompanyShopId).FirstOrDefaultAsync();
+            if (shopId != default)
+                return await IsShopManagerAsync(shopId);
+
+            return false;
+        }
     }
 }
