@@ -1,6 +1,6 @@
-﻿using AssistCust.Application.Interfaces;
+﻿using AssistCust.Application.Exceptions;
+using AssistCust.Application.Interfaces;
 using AssistCust.Domain.Entities;
-using AutoMapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,14 +10,17 @@ namespace AssistCust.Application.PurchaseDetails.Commands.CreatePurchaseDetail
     public class CreatePurchaseDetailCommandHandler : IRequestHandler<CreatePurchaseDetailCommand, int>
     {
         private readonly IAssistDbContext _context;
-        private readonly IMapper _mapper;
-        public CreatePurchaseDetailCommandHandler(IAssistDbContext context, IMapper mapper)
+        private readonly IUserAccessService _userAccessService;
+        public CreatePurchaseDetailCommandHandler(IAssistDbContext context, IUserAccessService userAccessService)
         {
             _context = context;
-            _mapper = mapper;
+            _userAccessService = userAccessService;
         }
         public async Task<int> Handle(CreatePurchaseDetailCommand request, CancellationToken cancellationToken)
         {
+            if (!(await _userAccessService.IsPurchaseOwnerOrShopManagementAsync(request.PurchaseId)))
+                throw new InsufficientPrivilegesException(nameof(PurchaseDetail));
+
             var entity = new PurchaseDetail
             {
                 ProductId = request.ProductId,

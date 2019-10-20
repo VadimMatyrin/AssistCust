@@ -7,7 +7,6 @@ using AssistCust.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using AssistCust.Application.Exceptions;
 using MediatR;
-using AssistCust.Application.Purchases.Queries.ViewModels;
 using AssistCust.Application.PurchaseDetails.Queries.ViewModels;
 
 namespace AssistCust.Application.PurchaseDetails.Queries.GetPurchaseDetail
@@ -16,11 +15,13 @@ namespace AssistCust.Application.PurchaseDetails.Queries.GetPurchaseDetail
     {
         private readonly IAssistDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IUserAccessService _userAccessService;
 
-        public GetPurchaseDetailQueryHandler(IAssistDbContext context, IMapper mapper)
+        public GetPurchaseDetailQueryHandler(IAssistDbContext context, IMapper mapper, IUserAccessService userAccessService)
         {
             _context = context;
             _mapper = mapper;
+            _userAccessService = userAccessService;
         }
 
         public async Task<PurchaseDetailViewModel> Handle(GetPurchaseDetailQuery request, CancellationToken cancellationToken)
@@ -28,6 +29,9 @@ namespace AssistCust.Application.PurchaseDetails.Queries.GetPurchaseDetail
             var purchaseDetail = _mapper.Map<PurchaseDetailViewModel>(await _context
                 .PurchaseDetails.Where(pd => pd.Id == request.Id)
                 .SingleOrDefaultAsync(cancellationToken));
+
+            if (!(await _userAccessService.IsPurchaseOwnerOrShopManagementAsync(purchaseDetail.PurchaseId)))
+                throw new InsufficientPrivilegesException(nameof(Purchase));
 
             if (purchaseDetail == null)
             {

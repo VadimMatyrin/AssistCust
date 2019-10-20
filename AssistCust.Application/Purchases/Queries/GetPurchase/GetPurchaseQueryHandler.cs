@@ -30,8 +30,7 @@ namespace AssistCust.Application.Purchases.Queries.GetPurchase
                 .Purchases.Where(p => p.Id == request.Id)
                 .SingleOrDefaultAsync(cancellationToken));
 
-            if (!(await _userAccessService.IsCompanyOwnerOrShopManagerAsync(purchase.CompanyShopId)) || 
-                !(await _userAccessService.IsPurchaseOwnerOrShopManagerAsync(purchase.CompanyShopId)))
+            if (!(await _userAccessService.IsPurchaseOwnerOrShopManagementAsync(purchase.CompanyShopId)))
                 throw new InsufficientPrivilegesException(nameof(Purchase));
 
             if (purchase == null)

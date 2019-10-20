@@ -10,9 +10,11 @@ namespace AssistCust.Application.PurchaseDetails.Commands.UpdatePurchaseDetail
     public class UpdatePurchaseDetailCommandCommandHandler : IRequestHandler<UpdatePurchaseDetailCommand, Unit>
     {
         private readonly IAssistDbContext _context;
-        public UpdatePurchaseDetailCommandCommandHandler(IAssistDbContext context)
+        private readonly IUserAccessService _userAccessService;
+        public UpdatePurchaseDetailCommandCommandHandler(IAssistDbContext context, IUserAccessService userAccessService)
         {
             _context = context;
+            _userAccessService = userAccessService;
         }
         public async Task<Unit> Handle(UpdatePurchaseDetailCommand request, CancellationToken cancellationToken)
         {
@@ -22,6 +24,9 @@ namespace AssistCust.Application.PurchaseDetails.Commands.UpdatePurchaseDetail
             {
                 throw new NotFoundException(nameof(PurchaseDetail), request.Id);
             }
+
+            if (!(await _userAccessService.IsPurchaseOwnerOrShopManagementAsync(entity.PurchaseId)))
+                throw new InsufficientPrivilegesException(nameof(PurchaseDetail));
 
             entity.Id = request.Id;
             entity.ProductId = request.ProductId;

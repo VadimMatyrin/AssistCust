@@ -50,7 +50,7 @@ namespace AssistCust.Application.Services
             return isPurchaseOwner;
         }
 
-        public async Task<bool> IsPurchaseOwnerOrShopManagerAsync(int purchaseId)
+        public async Task<bool> IsPurchaseOwnerOrShopManagementAsync(int purchaseId)
         {
             var isPurchaseOwner = await IsPurchaseOwnerAsync(purchaseId);
             if (isPurchaseOwner)
@@ -58,7 +58,7 @@ namespace AssistCust.Application.Services
 
             var shopId = await _context.Purchases.Where(p => p.Id == purchaseId).Select(p => p.CompanyShopId).FirstOrDefaultAsync();
             if (shopId != default)
-                return await IsShopManagerAsync(shopId);
+                return await IsCompanyOwnerOrShopManagerAsync(shopId);
 
             return false;
         }

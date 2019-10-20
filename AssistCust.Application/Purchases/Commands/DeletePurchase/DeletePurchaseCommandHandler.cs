@@ -19,7 +19,7 @@ namespace AssistCust.Application.Purchases.Commands.DeletePurchase
         }
         public async Task<Unit> Handle(DeletePurchaseCommand request, CancellationToken cancellationToken)
         {
-            if(!(await _userAccessService.IsPurchaseOwnerOrShopManagerAsync(request.Id)))
+            if(!(await _userAccessService.IsPurchaseOwnerOrShopManagementAsync(request.Id)))
                 throw new InsufficientPrivilegesException(nameof(Purchase));
 
             var entity = await _context.Purchases.FindAsync(request.Id);
