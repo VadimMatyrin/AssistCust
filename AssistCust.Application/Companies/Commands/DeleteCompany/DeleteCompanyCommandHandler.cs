@@ -14,12 +14,17 @@ namespace AssistCust.Application.Companies.Commands.DeleteCompany
     public class DeleteCompanyCommandHandler : IRequestHandler<DeleteCompanyCommand>
     {
         private readonly IAssistDbContext _context;
-        public DeleteCompanyCommandHandler(IAssistDbContext context)
+        private readonly IUserAccessService _userAccessService;
+        public DeleteCompanyCommandHandler(IAssistDbContext context, IUserAccessService userAccessService)
         {
             _context = context;
+            _userAccessService = userAccessService;
         }
         public async Task<Unit> Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
         {
+            if (!(await _userAccessService.IsCompanyOwnerAsync(request.Id)))
+                throw new InsufficientPrivilegesException(nameof(request));
+
             var entity = await _context.Companies.FindAsync(request.Id);
 
             if (entity == null)

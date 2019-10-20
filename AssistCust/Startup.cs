@@ -14,6 +14,10 @@ using AutoMapper;
 using Microsoft.Extensions.Hosting;
 using AssistCust.Domain.Entities;
 using Microsoft.AspNetCore.Authentication;
+using AssistCust.Application.Services;
+using System.Collections.Generic;
+using System.Linq;
+using System;
 
 namespace AssistCust
 {
@@ -34,6 +38,7 @@ namespace AssistCust
 
             // Add MediatR
             services.AddMediatR(typeof(GetProductQueryHandler).GetTypeInfo().Assembly);
+            services.AddTransient(typeof(IUserAccessService), typeof(UserAccessService));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
@@ -56,6 +61,18 @@ namespace AssistCust
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "My API", Version = "v1" });
+                var securityScheme = new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+                {
+                    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+                    Description = "Please enter into field the word 'Bearer' following by space and JWT",
+                    Name = "Authorization",
+                    Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+                };
+                c.AddSecurityDefinition("Bearer", securityScheme);
+                c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+                {
+                    { securityScheme, new List<string>()}
+                });
             });
 
             // In production, the React files will be served from this directory

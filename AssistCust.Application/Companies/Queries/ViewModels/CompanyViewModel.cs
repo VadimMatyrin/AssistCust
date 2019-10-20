@@ -9,7 +9,6 @@ namespace AssistCust.Application.Companies.Queries.ViewModels
         public int Id { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
-        public int CompanyId { get; set; }
 
         public void CreateMappings(Profile configuration)
         {

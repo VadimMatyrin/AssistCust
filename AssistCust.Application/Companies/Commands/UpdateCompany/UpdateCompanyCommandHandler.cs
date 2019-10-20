@@ -14,12 +14,17 @@ namespace AssistCust.Application.Companies.Commands.UpdateCompany
     public class UpdateCompanyCommandHandler : IRequestHandler<UpdateCompanyCommand, Unit>
     {
         private readonly IAssistDbContext _context;
-        public UpdateCompanyCommandHandler(IAssistDbContext context)
+        private readonly IUserAccessService _userAccessService;
+        public UpdateCompanyCommandHandler(IAssistDbContext context, IUserAccessService userAccessService)
         {
             _context = context;
+            _userAccessService = userAccessService;
         }
         public async Task<Unit> Handle(UpdateCompanyCommand request, CancellationToken cancellationToken)
         {
+            if (!(await _userAccessService.IsCompanyOwnerAsync(request.Id)))
+                throw new InsufficientPrivilegesException(nameof(request));
+
             var entity = await _context.Companies.FindAsync(request.Id);
 
             if (entity == null)
@@ -30,7 +35,6 @@ namespace AssistCust.Application.Companies.Commands.UpdateCompany
             entity.Id = request.Id;
             entity.Name = request.Name;
             entity.Country = request.Country;
-            entity.UserId = request.UserId;
 
             await _context.SaveChangesAsync(cancellationToken);
 

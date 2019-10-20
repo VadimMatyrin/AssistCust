@@ -13,9 +13,11 @@ namespace AssistCust.Application.Companies.Commands.CreateCompany
     public class CreateCompanyCommandHandler : IRequestHandler<CreateCompanyCommand, int>
     {
         private readonly IAssistDbContext _context;
-        public CreateCompanyCommandHandler(IAssistDbContext context)
+        private readonly IUserAccessService _userAccessService;
+        public CreateCompanyCommandHandler(IAssistDbContext context, IUserAccessService userAccessService)
         {
             _context = context;
+            _userAccessService = userAccessService;
         }
         public async Task<int> Handle(CreateCompanyCommand request, CancellationToken cancellationToken)
         {
@@ -23,7 +25,7 @@ namespace AssistCust.Application.Companies.Commands.CreateCompany
             {
                 Name = request.Name,
                 Country = request.Country,
-                UserId = request.UserId
+                UserId = _userAccessService.UserId
             };
 
             _context.Companies.Add(entity);
