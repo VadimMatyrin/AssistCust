@@ -35,7 +35,14 @@ namespace AssistCust.Application.AttentionRequests.Commands.UpdateAttentionReque
             entity.Id = request.Id;
             entity.IsResolved = request.IsResolved;
             entity.Message = request.Message;
-
+            if(request.ResolveDate != default)
+            {
+                entity.ResolveDate = request.ResolveDate;
+            }
+            else
+            {
+                entity.ResolveDate = null;
+            }
             await _context.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;

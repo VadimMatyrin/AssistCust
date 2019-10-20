@@ -10,5 +10,6 @@ namespace AssistCust.Application.AttentionRequests.Commands.UpdateAttentionReque
         public int Id { get; set; }
         public bool IsResolved { get; set; }
         public string Message { get; set; }
+        public DateTime ResolveDate { get; set; }
     }
 }
