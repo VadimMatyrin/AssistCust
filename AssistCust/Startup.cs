@@ -18,6 +18,7 @@ using AssistCust.Application.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using AssistCust.Application.Infrastructure.Middleware;
 
 namespace AssistCust
 {
@@ -107,6 +108,7 @@ namespace AssistCust
             app.UseAuthentication();
             app.UseIdentityServer();
             app.UseAuthorization();
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
