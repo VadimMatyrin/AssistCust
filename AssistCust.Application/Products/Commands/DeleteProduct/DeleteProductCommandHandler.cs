@@ -2,10 +2,7 @@
 using AssistCust.Application.Interfaces;
 using AssistCust.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,9 +11,11 @@ namespace AssistCust.Application.Products.Commands.DeleteProduct
     public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand>
     {
         private readonly IAssistDbContext _context;
-        public DeleteProductCommandHandler(IAssistDbContext context)
+        private readonly IUserAccessService _userAccessService;
+        public DeleteProductCommandHandler(IAssistDbContext context, IUserAccessService userAccessService)
         {
             _context = context;
+            _userAccessService = userAccessService;
         }
         public async Task<Unit> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
@@ -26,6 +25,9 @@ namespace AssistCust.Application.Products.Commands.DeleteProduct
             {
                 throw new NotFoundException(nameof(Product), request.Id);
             }
+
+            if (!(await _userAccessService.IsCompanyOwnerAsync(entity.CompanyId)))
+                throw new InsufficientPrivilegesException(nameof(Product));
 
             var hasOrders = _context.PurchaseDetails.Any(pd => pd.ProductId == entity.Id);
             if (hasOrders)
