@@ -14,7 +14,8 @@ namespace AssistCust.Persistance
         public DbSet<CompanyShop> CompanyShops { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
-        public DbSet<PurchaseDetail> PurchaseDetails{ get; set; }
+        public DbSet<PurchaseDetail> PurchaseDetails { get; set; }
+        public DbSet<AttentionRequest> AttentionRequests { get; set; }
 
         public AssistCustDbContext(DbContextOptions<AssistCustDbContext> options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
