@@ -10,17 +10,17 @@ namespace AssistCust.Application.Purchases.Commands.CreatePurchase
     public class CreatePurchaseCommandHandler : IRequestHandler<CreatePurchaseCommand, int>
     {
         private readonly IAssistDbContext _context;
-        private readonly IMapper _mapper;
-        public CreatePurchaseCommandHandler(IAssistDbContext context, IMapper mapper)
+        private readonly IUserAccessService _userAccessService;
+        public CreatePurchaseCommandHandler(IAssistDbContext context, IUserAccessService userAccessService)
         {
             _context = context;
-            _mapper = mapper;
+            _userAccessService = userAccessService;
         }
         public async Task<int> Handle(CreatePurchaseCommand request, CancellationToken cancellationToken)
         {
             var entity = new Purchase
             {
-                UserId = request.UserId,
+                UserId = _userAccessService.UserId,
                 CompanyShopId = request.CompanyShopId,
                 PurchaseTime = request.PurchaseTime
             };

@@ -1,13 +1,13 @@
 ﻿using AssistCust.Application.Purchases.Commands.CreatePurchase;
 using AssistCust.Application.Purchases.Commands.DeletePurchase;
-using AssistCust.Application.Purchases.Queries.GetAllPurchasesByUser;
-using AssistCust.Application.Purchases.Queries.ViewModels;
+using AssistCust.Application.Purchases.Commands.UpdatePurchase;
 using AssistCust.Application.Purchases.Queries.GetPurchase;
+using AssistCust.Application.Purchases.Queries.GetAllPurchasesByShop;
+using AssistCust.Application.Purchases.Queries.GetAllPurchasesInShopByUserQuery;
+using AssistCust.Application.Purchases.Queries.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using AssistCust.Application.Purchases.Commands.UpdatePurchase;
-using AssistCust.Application.Purchases.Queries.GetAllPurchasesByShop;
 
 namespace AssistCust.Controllers
 {
@@ -22,7 +22,7 @@ namespace AssistCust.Controllers
         [HttpGet("{id}")]
         public Task<PurchaseListViewModel> GetAllPurchasesByUser(string id)
         {
-            return Mediator.Send(new GetAllPurchasesByUserQuery { UserId = id });
+            return Mediator.Send(new GetAllPurchasesInShopByUserQuery { UserId = id });
         }
 
         [HttpGet("{id}")]

@@ -43,5 +43,24 @@ namespace AssistCust.Application.Services
 
             return false;
         }
+
+        public async Task<bool> IsPurchaseOwnerAsync(int purchaseId)
+        {
+            var isPurchaseOwner = await _context.Purchases.AnyAsync(c => c.Id == purchaseId && c.UserId == UserId);
+            return isPurchaseOwner;
+        }
+
+        public async Task<bool> IsPurchaseOwnerOrShopManagerAsync(int purchaseId)
+        {
+            var isPurchaseOwner = await IsPurchaseOwnerAsync(purchaseId);
+            if (isPurchaseOwner)
+                return true;
+
+            var shopId = await _context.Purchases.Where(p => p.Id == purchaseId).Select(p => p.CompanyShopId).FirstOrDefaultAsync();
+            if (shopId != default)
+                return await IsShopManagerAsync(shopId);
+
+            return false;
+        }
     }
 }

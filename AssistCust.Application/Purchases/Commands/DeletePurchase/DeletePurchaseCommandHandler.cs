@@ -11,12 +11,17 @@ namespace AssistCust.Application.Purchases.Commands.DeletePurchase
     public class DeletePurchaseCommandCommandHandler : IRequestHandler<DeletePurchaseCommand, Unit>
     {
         private readonly IAssistDbContext _context;
-        public DeletePurchaseCommandCommandHandler(IAssistDbContext context)
+        private readonly IUserAccessService _userAccessService;
+        public DeletePurchaseCommandCommandHandler(IAssistDbContext context, IUserAccessService userAccessService)
         {
             _context = context;
+            _userAccessService = userAccessService;
         }
         public async Task<Unit> Handle(DeletePurchaseCommand request, CancellationToken cancellationToken)
         {
+            if(!(await _userAccessService.IsPurchaseOwnerOrShopManagerAsync(request.Id)))
+                throw new InsufficientPrivilegesException(nameof(Purchase));
+
             var entity = await _context.Purchases.FindAsync(request.Id);
 
             if (entity == null)

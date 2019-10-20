@@ -11,5 +11,7 @@ namespace AssistCust.Application.Interfaces
         Task<bool> IsCompanyOwnerAsync(int companyId);
         Task<bool> IsShopManagerAsync(int shopId);
         Task<bool> IsCompanyOwnerOrShopManagerAsync(int shopId);
+        Task<bool> IsPurchaseOwnerAsync(int purchaseId);
+        Task<bool> IsPurchaseOwnerOrShopManagerAsync(int purchaseId);
     }
 }
