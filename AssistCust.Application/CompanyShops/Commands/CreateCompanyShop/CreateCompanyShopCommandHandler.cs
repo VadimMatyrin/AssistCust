@@ -1,4 +1,5 @@
-﻿using AssistCust.Application.Interfaces;
+﻿using AssistCust.Application.Exceptions;
+using AssistCust.Application.Interfaces;
 using AssistCust.Domain.Entities;
 using MediatR;
 using System.Threading;
@@ -9,12 +10,17 @@ namespace AssistCust.Application.CompanyShops.Commands.CreateCompanyShop
     public class CreateCompanyShopCommandHandler : IRequestHandler<CreateCompanyShopCommand, int>
     {
         private readonly IAssistDbContext _context;
-        public CreateCompanyShopCommandHandler(IAssistDbContext context)
+        private readonly IUserAccessService _userAccessService;
+        public CreateCompanyShopCommandHandler(IAssistDbContext context, IUserAccessService userAccessService)
         {
             _context = context;
+            _userAccessService = userAccessService;
         }
         public async Task<int> Handle(CreateCompanyShopCommand request, CancellationToken cancellationToken)
         {
+            if (!(await _userAccessService.IsCompanyOwnerAsync(request.CompanyId)))
+                throw new InsufficientPrivilegesException(nameof(CompanyShop));
+
             var entity = new CompanyShop
             {
                 ShopName = request.ShopName,

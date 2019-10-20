@@ -10,12 +10,17 @@ namespace AssistCust.Application.CompanyShops.Commands.UpdateCompanyShop
     public class UpdateCompanyShopCommandHandler : IRequestHandler<UpdateCompanyShopCommand, Unit>
     {
         private readonly IAssistDbContext _context;
-        public UpdateCompanyShopCommandHandler(IAssistDbContext context)
+        private readonly IUserAccessService _userAccessService;
+        public UpdateCompanyShopCommandHandler(IAssistDbContext context, IUserAccessService userAccessService)
         {
             _context = context;
+            _userAccessService = userAccessService;
         }
         public async Task<Unit> Handle(UpdateCompanyShopCommand request, CancellationToken cancellationToken)
         {
+            if(!(await _userAccessService.IsCompanyOwnerOrShopManagerAsync(request.Id)))
+                throw new InsufficientPrivilegesException(nameof(CompanyShop));
+
             var entity = await _context.CompanyShops.FindAsync(request.Id);
 
             if (entity == null)
@@ -30,7 +35,6 @@ namespace AssistCust.Application.CompanyShops.Commands.UpdateCompanyShop
             entity.AddressField1 = request.AddressField1;
             entity.AddressField2 = request.AddressField2;
             entity.UserId = request.UserId;
-            entity.CompanyId = request.CompanyId;
 
             await _context.SaveChangesAsync(cancellationToken);
 

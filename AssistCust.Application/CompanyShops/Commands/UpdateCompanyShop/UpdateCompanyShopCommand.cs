@@ -11,6 +11,5 @@ namespace AssistCust.Application.CompanyShops.Commands.UpdateCompanyShop
         public string AddressField1 { get; set; }
         public string AddressField2 { get; set; }
         public string UserId { get; set; }
-        public int CompanyId { get; set; }
     }
 }

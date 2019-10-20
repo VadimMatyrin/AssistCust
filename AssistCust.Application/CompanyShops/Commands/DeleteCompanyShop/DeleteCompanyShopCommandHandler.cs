@@ -11,9 +11,11 @@ namespace AssistCust.Application.CompanyShops.Commands.DeleteCompanyShop
     public class DeleteCompanyShopCommandHandler : IRequestHandler<DeleteCompanyShopCommand>
     {
         private readonly IAssistDbContext _context;
-        public DeleteCompanyShopCommandHandler(IAssistDbContext context)
+        private readonly IUserAccessService _userAccessService;
+        public DeleteCompanyShopCommandHandler(IAssistDbContext context, IUserAccessService userAccessService)
         {
             _context = context;
+            _userAccessService = userAccessService;
         }
         public async Task<Unit> Handle(DeleteCompanyShopCommand request, CancellationToken cancellationToken)
         {
@@ -23,6 +25,9 @@ namespace AssistCust.Application.CompanyShops.Commands.DeleteCompanyShop
             {
                 throw new NotFoundException(nameof(CompanyShop), request.Id);
             }
+
+            if (!(await _userAccessService.IsCompanyOwnerAsync(entity.CompanyId)))
+                throw new InsufficientPrivilegesException(nameof(CompanyShop));
 
             var hasOrders = _context.Purchases.Any(p => p.CompanyShopId == entity.Id);
             if (hasOrders)
