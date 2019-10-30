@@ -21,7 +21,7 @@ namespace AssistCust.Controllers
             return Mediator.Send(new GetCompanyQuery { Id = id });
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         public Task<CompanyListViewModel> GetAllCompaniesByUser()
         {
             return Mediator.Send(new GetAllCompaniesByUserQuery());
