@@ -1,6 +1,7 @@
 ﻿using AssistCust.Application.Companies.Commands.CreateCompany;
 using AssistCust.Application.Companies.Commands.DeleteCompany;
 using AssistCust.Application.Companies.Commands.UpdateCompany;
+using AssistCust.Application.Companies.Queries.GetAllCompaniesByUser;
 using AssistCust.Application.Companies.Queries.GetCompany;
 using AssistCust.Application.Companies.Queries.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +19,12 @@ namespace AssistCust.Controllers
         public Task<CompanyViewModel> Get(int id)
         {
             return Mediator.Send(new GetCompanyQuery { Id = id });
+        }
+
+        [HttpGet("{id}")]
+        public Task<CompanyListViewModel> GetAllCompaniesByUser()
+        {
+            return Mediator.Send(new GetAllCompaniesByUserQuery());
         }
 
         [HttpPost]
