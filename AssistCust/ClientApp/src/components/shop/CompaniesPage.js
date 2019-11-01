@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { CompaniesList } from './CompaniesList'
+import { Link } from 'react-router-dom';
 import fetchDataService from '../helpers/FetchDataService'
 
 export class CompaniesPage extends Component {
@@ -21,7 +22,11 @@ export class CompaniesPage extends Component {
                         <h1>Your companies:</h1>
                     </div>
                     <div className="col-lg-2">
-                        <button type="button" className="btn btn-success">Create new</button>
+                        <Link to="/createcompany">
+                            <button type="button" className="btn btn-success">
+                                Create new
+                            </button>
+                        </Link>
                     </div>
                 </div>
                 <div>
