@@ -11,12 +11,14 @@ export class LoadingScreen extends React.Component {
                     width: '100%',
                     height: '100%',
                     backgroundColor: '#555',
-                    opacity: 0.5
+                    opacity: 0.5,
+                    zIndex: 99998
                 }}>
                 </div>
                 <div style={{
                     position: 'absolute', left: '50%', top: '50%',
                     transform: 'translate(-50%, -50%)',
+                    zIndex: 99999
                 }}>
                     <Loader
                         type="Oval"

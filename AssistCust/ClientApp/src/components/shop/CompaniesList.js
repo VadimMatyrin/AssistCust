@@ -2,6 +2,7 @@
 import { Company } from './Company';
 
 export class CompaniesList extends Component {
+
     render() {
         return (
             <ul class="list-group">
@@ -13,7 +14,7 @@ export class CompaniesList extends Component {
                     </div>
                 </li>
                 {this.props.companies.map((company) => {
-                    return (<Company company={company}></Company>);
+                    return (<Company company={company} triggerCompaniesFetch={this.props.triggerCompaniesFetch}></Company>);
                 })}
             </ul>
         );

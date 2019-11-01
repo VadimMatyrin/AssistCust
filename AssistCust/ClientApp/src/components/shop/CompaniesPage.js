@@ -8,9 +8,14 @@ export class CompaniesPage extends Component {
     constructor(props) {
         super(props);
         this.state = { companies: [], };
+        this.triggerCompaniesFetch = this.triggerCompaniesFetch.bind(this);
     }
 
     componentDidMount() {
+        this.getUserCompanies();
+    }
+
+    triggerCompaniesFetch() {
         this.getUserCompanies();
     }
 
@@ -30,7 +35,7 @@ export class CompaniesPage extends Component {
                     </div>
                 </div>
                 <div>
-                    <CompaniesList companies={this.state.companies}></CompaniesList>
+                    <CompaniesList companies={this.state.companies} triggerCompaniesFetch={this.triggerCompaniesFetch}></CompaniesList>
                 </div>
             </div>
         );

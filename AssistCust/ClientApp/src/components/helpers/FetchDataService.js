@@ -23,6 +23,18 @@ export class FetchDataService {
         const companyId = await response.json();
         return companyId;
     }
+
+    async deleteCompany(companyId) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/Companies/Delete/' + companyId, {
+            headers: !token ? {} : {
+                'Authorization': `Bearer ${token}`
+            },
+            method: 'DELETE'
+        });
+        const responseCode = response.status;
+        return responseCode;
+    }
 }
 
 const fetchDataService = new FetchDataService();
