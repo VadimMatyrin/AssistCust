@@ -7,7 +7,6 @@ export class EditCompany extends Component {
 
     constructor(props) {
         super(props);
-        debugger;
         this.state = {
             companyName: this.props.location.company.name,
             countryName: this.props.location.company.country,

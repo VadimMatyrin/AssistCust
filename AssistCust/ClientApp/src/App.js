@@ -3,9 +3,12 @@ import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
-import { CompaniesPage } from './components/shop/CompaniesPage';
-import { CreateCompany } from './components/shop/CreateCompany';
-import { EditCompany } from './components/shop/EditCompany';
+import { CompaniesPage } from './components/company/CompaniesPage';
+import { CreateCompany } from './components/company/CreateCompany';
+import { EditCompany } from './components/company/EditCompany';
+import { ShopsPage } from './components/shop/ShopsPage';
+import { CreateShop } from './components/shop/CreateShop';
+import { EditShop } from './components/shop/EditShop';
 import { Counter } from './components/Counter';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
@@ -24,6 +27,9 @@ export default class App extends Component {
                 <AuthorizeRoute path='/companies' component={CompaniesPage} />
                 <AuthorizeRoute path='/createcompany' component={CreateCompany} />
                 <AuthorizeRoute path='/editcompany' component={EditCompany} />
+                <AuthorizeRoute path='/shops' component={ShopsPage} />
+                <AuthorizeRoute path='/createshop' component={CreateShop} />
+                <AuthorizeRoute path='/editshop' component={EditShop} />
                 <AuthorizeRoute path='/fetch-data' component={FetchData} />
                 <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
             </Layout>
