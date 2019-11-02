@@ -24,6 +24,20 @@ export class FetchDataService {
         return companyId;
     }
 
+    async updateCompany(company) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/Companies/Update', {
+            headers: !token ? {} : {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            method: 'PUT',
+            body: JSON.stringify(company),
+        });
+        const responseCode = response.status;
+        return responseCode;
+    }
+
     async deleteCompany(companyId) {
         const token = await authService.getAccessToken();
         const response = await fetch('/api/Companies/Delete/' + companyId, {

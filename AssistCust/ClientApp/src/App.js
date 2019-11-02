@@ -5,6 +5,7 @@ import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { CompaniesPage } from './components/shop/CompaniesPage';
 import { CreateCompany } from './components/shop/CreateCompany';
+import { EditCompany } from './components/shop/EditCompany';
 import { Counter } from './components/Counter';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
@@ -22,6 +23,7 @@ export default class App extends Component {
                 <Route path='/counter' component={Counter} />
                 <AuthorizeRoute path='/companies' component={CompaniesPage} />
                 <AuthorizeRoute path='/createcompany' component={CreateCompany} />
+                <AuthorizeRoute path='/editcompany' component={EditCompany} />
                 <AuthorizeRoute path='/fetch-data' component={FetchData} />
                 <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
             </Layout>

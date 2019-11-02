@@ -6,6 +6,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import fetchDataService from '../helpers/FetchDataService'
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { LoadingScreen } from '../LoadingScreen';
+import { Link } from 'react-router-dom';
 
 export class Company extends Component {
     constructor(props) {
@@ -64,9 +65,15 @@ export class Company extends Component {
                         <div className="col-lg-2">
                             <div className="row">
                                 <div className="col-lg-4">
-                                    <button type="button" className="btn btn-info">
-                                        <FontAwesomeIcon icon={faWrench} />
-                                    </button>
+                                    <Link to={{
+                                        pathname: '/editcompany',
+                                        company: company
+                                    }}
+                                    >
+                                        <button type="button" className="btn btn-info">
+                                            <FontAwesomeIcon icon={faWrench} />
+                                        </button>
+                                    </Link >
                                 </div>
                                 <div className="col-lg-4">
                                     <button data-id={this.props.company.id} name={company.name} type="button" className="btn btn-danger" onClick={this.submit}>
