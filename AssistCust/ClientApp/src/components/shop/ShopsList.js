@@ -13,6 +13,7 @@ export class ShopsList extends Component {
                         <div className="col-lg-2">City</div>
                         <div className="col-lg-2">Address 1</div>
                         <div className="col-lg-2">Address 2</div>
+                        <div className="col-lg-2"><b>Actions</b></div>
                     </div>
                 </li>
                 {this.props.shops.map((shop) => {

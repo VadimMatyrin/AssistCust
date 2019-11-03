@@ -2,20 +2,23 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWrench } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faStore } from '@fortawesome/free-solid-svg-icons';
+import { faTags } from '@fortawesome/free-solid-svg-icons';
 import { confirmAlert } from 'react-confirm-alert';
 import fetchDataService from '../helpers/FetchDataService'
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { LoadingScreen } from '../LoadingScreen';
 import { Link } from 'react-router-dom';
 import { ShopsPage } from '../shop/ShopsPage';
+import { ProductsPage } from '../product/ProductsPage';
 
 export class Company extends Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: false,
-            showShops: false
+            showShops: false,
+            showProducts: false,
         };
         this.submit = this.submit.bind(this);
         this.deleteCompany = this.deleteCompany.bind(this);
@@ -57,8 +60,8 @@ export class Company extends Component {
                 <li className="list-group-item">
                     <div className="row">
                         <div className="col-lg-6">{company.name}</div>
-                        <div className="col-lg-4">{company.country}</div>
-                        <div className="col-lg-2">
+                        <div className="col-lg-3">{company.country}</div>
+                        <div className="col-lg-3">
                             <div className="row">
                                 <div className="col-lg-3">
                                     <Link to={{
@@ -77,8 +80,19 @@ export class Company extends Component {
                                     </button>
                                 </div>
                                 <div className="col-lg-3">
-                                    <button type="button" className="btn btn-info" onClick={(e) => this.setState({ showShops: !this.state.showShops })}>
-                                        <FontAwesomeIcon icon={faInfoCircle} />
+                                    <button type="button" className="btn btn-warning" onClick={(e) => this.setState({
+                                        showShops: !this.state.showShops,
+                                        showProducts: false
+                                    })}>
+                                        <FontAwesomeIcon icon={faStore} />
+                                    </button>
+                                </div>
+                                <div className="col-lg-3">
+                                    <button type="button" className="btn btn-info" onClick={(e) => this.setState({
+                                        showProducts: !this.state.showProducts,
+                                        showShops: false,
+                                    })}>
+                                        <FontAwesomeIcon icon={faTags} />
                                     </button>
                                 </div>
                             </div>
@@ -86,6 +100,7 @@ export class Company extends Component {
                     </div>
                 </li>
                 {this.state.showShops && <ShopsPage company={this.props.company} />}
+                {this.state.showProducts && <ProductsPage company={this.props.company} />}
                 {this.state.loading && <LoadingScreen />}
             </>
         );
