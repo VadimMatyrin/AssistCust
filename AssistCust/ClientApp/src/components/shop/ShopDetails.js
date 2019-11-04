@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import fetchDataService from '../helpers/FetchDataService';
 import { LoadingScreen } from '../LoadingScreen';
+import { AttRequestsPage } from '../attentionRequest/AttRequestsPage';
 
 export class ShopDetails extends Component {
     constructor(props) {
@@ -24,9 +25,16 @@ export class ShopDetails extends Component {
         return (
             <div className="row">
                 <div className="col-lg-12">
-                    <h1>{shop.shopName}: Shop</h1>
+                    <h1>{shop.shopName}</h1>
+                    <h3>State: {shop.state}</h3>
+                    <h3>City: {shop.city}</h3>
+                    <h3>Address1: {shop.addressField1}</h3>
+                    <h3>Address2: {shop.addressField2}</h3>
+                    <h3>Manager: {shop.userId}</h3>
                 </div>
-                <div></div>
+                <div className="col-lg-12">
+                    <AttRequestsPage shop={this.state.shop} />
+                </div>
             </div>
         );
     }

@@ -157,6 +157,41 @@ export class FetchDataService {
         return responseCode;
     }
 
+    async getAllShopAttentionRequests(shopId) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/AttentionRequest/GetAllShopAttentionRequests/' + shopId, {
+            headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+        });
+        const json = await response.json();
+        return json.attentionRequests;
+    }
+
+    async updateAttRequest(attRequest) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/AttentionRequest/Update', {
+            headers: !token ? {} : {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            method: 'PUT',
+            body: JSON.stringify(attRequest),
+        });
+        const responseCode = response.status;
+        return responseCode;
+    }
+
+    async deleteAttRequest(attRequestId) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/AttentionRequest/Delete/' + attRequestId, {
+            headers: !token ? {} : {
+                'Authorization': `Bearer ${token}`
+            },
+            method: 'DELETE'
+        });
+        const responseCode = response.status;
+        return responseCode;
+    }
+
 }
 
 const fetchDataService = new FetchDataService();

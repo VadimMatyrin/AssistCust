@@ -17,6 +17,8 @@ import { ProductsPage } from './components/product/ProductsPage';
 import { CreateProduct } from './components/product/CreateProduct';
 import { EditProduct } from './components/product/EditProduct';
 
+import { EditAttRequest } from './components/attentionRequest/EditAttRequest';
+
 import { Counter } from './components/Counter';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
@@ -45,6 +47,8 @@ export default class App extends Component {
                 <AuthorizeRoute path='/products' component={ProductsPage} />
                 <AuthorizeRoute path='/createproduct' component={CreateProduct} />
                 <AuthorizeRoute path='/editproduct' component={EditProduct} />
+
+                <AuthorizeRoute path='/editAttRequest' component={EditAttRequest} />
 
                 <AuthorizeRoute path='/fetch-data' component={FetchData} />
                 <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
