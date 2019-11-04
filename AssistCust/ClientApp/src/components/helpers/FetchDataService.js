@@ -59,6 +59,15 @@ export class FetchDataService {
         return json.companyShops;
     }
 
+    async getShop(shopId) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/CompanyShops/Get/' + shopId, {
+            headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+        });
+        const json = await response.json();
+        return json;
+    }
+
     async createShop(shop) {
         const token = await authService.getAccessToken();
         const response = await fetch('/api/CompanyShops/Create', {
