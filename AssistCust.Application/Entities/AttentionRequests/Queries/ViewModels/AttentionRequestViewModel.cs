@@ -11,6 +11,7 @@ namespace AssistCust.Application.AttentionRequests.Queries.ViewModels
         public string Message { get; set; }
         public bool IsResolved { get; set; }
         public DateTime CreationDate { get; set; }
+        public DateTime? ResolveDate { get; set; }
         public string ManagerId { get; set; }
         public int CompanyShopId { get; set; }
 

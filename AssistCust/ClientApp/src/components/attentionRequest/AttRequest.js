@@ -1,8 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWrench } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { confirmAlert } from 'react-confirm-alert';
 import fetchDataService from '../helpers/FetchDataService'
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -14,7 +13,9 @@ export class AttRequest extends Component {
         super(props);
         this.state = { loading: false };
         this.submit = this.submit.bind(this);
+        this.submitResolve = this.submitResolve.bind(this);
         this.deleteAttRequest = this.deleteAttRequest.bind(this);
+        this.resolveRequest = this.resolveRequest.bind(this);
     }
 
     async deleteAttRequest(attRequestId) {
@@ -29,6 +30,38 @@ export class AttRequest extends Component {
             loading: false
         });
     }
+
+    async resolveRequest() {
+        this.setState({
+            loading: true
+        });
+        const updatedRequest = this.props.attRequest;
+        updatedRequest.isResolved = true;
+        updatedRequest.resolveDate = new Date().toISOString();
+        const responseCode = await fetchDataService.updateAttRequest(updatedRequest);
+        if (responseCode === 204) {
+            this.props.triggerAttRequestsFetch();
+        }
+        this.setState({
+            loading: false
+        });
+    }
+
+    submitResolve() {
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: `Are you sure you want to resolve this attention request?`,
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => this.resolveRequest()
+                },
+                {
+                    label: 'No'
+                }
+            ]
+        });
+    };
 
     submit(productId) {
         confirmAlert({
@@ -51,22 +84,18 @@ export class AttRequest extends Component {
             <>
                 <li className="list-group-item">
                     <div className="row">
-                        <div className="col-lg-6">{attRequest.message}</div>
-                        <div className="col-lg-2"><input className="form-control" type="checkbox" checked={attRequest.isResolved} disabled /></div>
+                        <div className="col-lg-4">{attRequest.message}</div>
+                        <div className="col-lg-2"><input className="form-control" type="checkbox" checked={attRequest.isResolved} readOnly={attRequest.isResolved} /></div>
                         <div className="col-lg-2">{attRequest.creationDate}</div>
+                        <div className="col-lg-2">{attRequest.resolveDate ? attRequest.resolveDate : ""}</div>
                         <div className="col-lg-2">
                             <div className="row">
-                                <div className="col-lg-6">
-                                    <Link to={{
-                                        pathname: '/editattRequest',
-                                        attRequest: attRequest
-                                    }}
-                                    >
-                                        <button type="button" className="btn btn-primary">
-                                            <FontAwesomeIcon icon={faWrench} />
-                                        </button>
-                                    </Link >
+                                {!attRequest.isResolved && < div className="col-lg-6">
+                                    <button type="button" className="btn btn-primary" onClick={this.submitResolve}>
+                                        <FontAwesomeIcon icon={faCheck} />
+                                    </button>
                                 </div>
+                                }
                                 <div className="col-lg-6">
                                     <button type="button" className="btn btn-danger" onClick={(e) => this.submit(this.props.attRequest.id)}>
                                         <FontAwesomeIcon icon={faTrash} />
