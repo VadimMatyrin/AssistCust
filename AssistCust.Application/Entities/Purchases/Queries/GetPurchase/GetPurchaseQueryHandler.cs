@@ -26,12 +26,12 @@ namespace AssistCust.Application.Purchases.Queries.GetPurchase
 
         public async Task<PurchaseViewModel> Handle(GetPurchaseQuery request, CancellationToken cancellationToken)
         {
+            if (!(await _userAccessService.IsPurchaseOwnerOrShopManagementAsync(request.Id)))
+                throw new InsufficientPrivilegesException(nameof(Purchase));
+
             var purchase = _mapper.Map<PurchaseViewModel>(await _context
                 .Purchases.Where(p => p.Id == request.Id)
                 .SingleOrDefaultAsync(cancellationToken));
-
-            if (!(await _userAccessService.IsPurchaseOwnerOrShopManagementAsync(purchase.CompanyShopId)))
-                throw new InsufficientPrivilegesException(nameof(Purchase));
 
             if (purchase == null)
             {
