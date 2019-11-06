@@ -30,7 +30,7 @@ export class ProductsPage extends Component {
                     </div>
                     <div className="col-lg-2">
                         <Link to={{
-                            pathname: '/createproduct',
+                            pathname: '/createproduct/' + this.props.company.id,
                             companyId: this.props.company.id
                         }}>
                             <button type="button" className="btn btn-success">

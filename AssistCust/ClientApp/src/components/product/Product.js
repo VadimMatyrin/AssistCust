@@ -58,7 +58,7 @@ export class Product extends Component {
                             <div className="row">
                                 <div className="col-lg-6">
                                     <Link to={{
-                                        pathname: '/editproduct',
+                                        pathname: '/editproduct/' + product.id,
                                         product: product
                                     }}
                                     >

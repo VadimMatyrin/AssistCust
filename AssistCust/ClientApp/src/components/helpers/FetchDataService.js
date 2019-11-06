@@ -127,6 +127,15 @@ export class FetchDataService {
         return json.products;
     }
 
+    async getProduct(productId) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/Products/Get/' + productId, {
+            headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+        });
+        const json = await response.json();
+        return json;
+    }
+
     async createProduct(product) {
         const token = await authService.getAccessToken();
         const response = await fetch('/api/Products/Create', {

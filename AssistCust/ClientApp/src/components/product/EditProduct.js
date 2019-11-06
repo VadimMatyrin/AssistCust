@@ -7,16 +7,43 @@ export class EditProduct extends Component {
 
     constructor(props) {
         super(props);
-        const product = this.props.location.product;
         this.state = {
-            name: product.name,
-            price: product.price,
-            description: product.description,
+            product: null,
+            name: null,
+            price: null,
+            description: null,
             loading: false,
             redirect: false
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.fetchForProduct = this.fetchForProduct.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.location.product) {
+            const product = this.props.location.product;
+            this.setState({
+                product: product,
+                name: product.name,
+                price: product.price,
+                description: product.description,
+            });
+        } else {
+            this.fetchForProduct();
+        }
+
+    }
+
+    async fetchForProduct() {
+        const { id } = this.props.match.params
+        const product = await fetchDataService.getProduct(id);
+        this.setState({
+            product: product,
+            name: product.name,
+            price: product.price,
+            description: product.description,
+        });
     }
 
     handleInputChange(event) {
@@ -35,7 +62,7 @@ export class EditProduct extends Component {
         });
         event.preventDefault();
         const product = {
-            id: this.props.location.product.id,
+            id: this.state.product.id,
             name: this.state.name,
             price: parseFloat(this.state.price),
             description: this.state.description
@@ -55,6 +82,10 @@ export class EditProduct extends Component {
         const { redirect } = this.state;
         if (redirect) {
             return (<Redirect to="/companies" />);
+        }
+        const { product } = this.state;
+        if (!product) {
+            return (<LoadingScreen />);
         }
         return (
             <fieldset disabled={this.state.loading}>

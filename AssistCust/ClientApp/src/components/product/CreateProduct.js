@@ -7,10 +7,13 @@ export class CreateProduct extends Component {
 
     constructor(props) {
         super(props);
+        const { id } = this.props.match.params;
+        const companyId = this.props.location.companyId ? this.props.location.companyId : parseInt(id);
         this.state = {
             name: '',
             description: '',
             price: 0,
+            companyId: companyId,
             loading: false,
             redirect: false
         };
@@ -37,7 +40,7 @@ export class CreateProduct extends Component {
             name: this.state.name,
             description: this.state.description,
             price: parseFloat(this.state.price),
-            companyId: this.props.location.companyId,
+            companyId: this.state.companyId,
         }
         const createdId = await fetchDataService.createProduct(product);
         if (createdId) {
