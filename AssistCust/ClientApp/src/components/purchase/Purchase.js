@@ -62,7 +62,7 @@ export class Purchase extends Component {
                             <div className="row">
                                 <div className="col-lg-3">
                                     <Link to={{
-                                        pathname: '/editpurchase',
+                                        pathname: '/editpurchase/' + purchase.id,
                                         purchase: purchase
                                     }}
                                     >

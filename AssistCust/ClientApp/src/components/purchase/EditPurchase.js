@@ -8,13 +8,40 @@ export class EditPurchase extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            purchaseTime: this.props.location.purchase.purchaseTime,
-            finishTime: this.props.location.purchase.finishTime,
+            shopId: null,
+            purchase: null,
+            purchaseTime: null,
+            finishTime: null,
             loading: false,
             redirect: false
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.fetchForPurchase = this.fetchForPurchase.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.location.purchase) {
+            const purchase = this.props.location.purchase;
+            this.setState({
+                purchase: purchase,
+                purchaseTime: purchase.purchaseTime,
+                finishTime: purchase.finishTime,
+            });
+        } else {
+            this.fetchForPurchase();
+        }
+
+    }
+
+    async fetchForPurchase() {
+        const { id } = this.props.match.params
+        const purchase = await fetchDataService.getPurchase(id);
+        this.setState({
+            purchase: purchase,
+            purchaseTime: purchase.purchaseTime,
+            finishTime: purchase.finishTime,
+        });
     }
 
     handleInputChange(event) {
@@ -33,9 +60,9 @@ export class EditPurchase extends Component {
         });
         event.preventDefault();
         const purchase = {
-            "id": this.props.location.purchase.id,
-            "purchaseTime": `${this.state.purchaseTime}Z`,
-            "finishTime": `${this.state.finishTime}:00Z`,
+            id: this.state.purchase.id,
+            purchaseTime: `${this.state.purchaseTime}Z`,
+            finishTime: `${this.state.finishTime}:00Z`,
         }
         const responseCode = await fetchDataService.updatePurchase(purchase);
         if (responseCode === 204) {
@@ -51,7 +78,11 @@ export class EditPurchase extends Component {
     render() {
         const { redirect } = this.state;
         if (redirect) {
-            return (<Redirect to={`/shopdetails/${this.props.location.purchase.companyShopId}`} />);
+            return (<Redirect to={`/shopdetails/${this.state.purchase.companyShopId}`} />);
+        }
+        const { purchase } = this.state;
+        if (!purchase) {
+            return (<LoadingScreen />);
         }
         return (
             <fieldset disabled={this.state.loading}>

@@ -7,9 +7,12 @@ export class CreatePurchase extends Component {
 
     constructor(props) {
         super(props);
+        const { id } = this.props.match.params;
+        const companyShopId = this.props.location.shop && this.props.location.shop.id ? this.props.location.shop.id : id;
         this.state = {
             userId: '',
             purchaseTime: '',
+            companyShopId: companyShopId,
             loading: false,
             redirect: false
         };
@@ -35,7 +38,7 @@ export class CreatePurchase extends Component {
         const purchase = {
             userId: this.state.userId,
             purchaseTime: `${this.state.purchaseTime}:00Z`,
-            companyShopId: this.props.location.shop.id,
+            companyShopId: this.state.companyShopId,
         }
         const purchaseId = await fetchDataService.createPurchase(purchase);
         if (purchaseId) {
@@ -51,7 +54,7 @@ export class CreatePurchase extends Component {
     render() {
         const { redirect } = this.state;
         if (redirect) {
-            return (<Redirect to={`/shopdetails/${this.props.location.shop.id}`} />);
+            return (<Redirect to={`/shopdetails/${this.state.companyShopId}`} />);
         }
         return (
             <fieldset disabled={this.state.loading}>

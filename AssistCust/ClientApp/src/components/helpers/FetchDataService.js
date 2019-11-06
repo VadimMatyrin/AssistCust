@@ -211,6 +211,15 @@ export class FetchDataService {
         return json.purchases;
     }
 
+    async getPurchase(purchaseId) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/Purchases/Get/' + purchaseId, {
+            headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+        });
+        const json = await response.json();
+        return json;
+    }
+
     async createPurchase(purchase) {
         const token = await authService.getAccessToken();
         const response = await fetch('/api/Purchases/Create', {
