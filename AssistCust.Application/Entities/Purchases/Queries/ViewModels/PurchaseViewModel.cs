@@ -13,7 +13,7 @@ namespace AssistCust.Application.Purchases.Queries.ViewModels
         public string UserId { get; set; }
         public int CompanyShopId { get; set; }
         public DateTime PurchaseTime { get; set; }
-        public DateTime? FinistTime { get; set; }
+        public DateTime? FinishTime { get; set; }
 
         public void CreateMappings(Profile configuration)
         {
