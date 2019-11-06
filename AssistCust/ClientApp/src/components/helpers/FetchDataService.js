@@ -10,6 +10,16 @@ export class FetchDataService {
         return json.companies;
     }
 
+    async getCompany(companyId) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/Companies/Get/' + companyId, {
+            headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+        });
+        const json = await response.json();
+        return json;
+    }
+    
+
     async createCompany(company) {
         const token = await authService.getAccessToken();
         const response = await fetch('/api/Companies/Create', {

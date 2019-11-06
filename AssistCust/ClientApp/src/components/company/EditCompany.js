@@ -8,13 +8,39 @@ export class EditCompany extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            companyName: this.props.location.company.name,
-            countryName: this.props.location.company.country,
+            company: null,
+            companyName: null,
+            countryName: null,
             loading: false,
             redirect: false
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.fetchForCompany = this.fetchForCompany.bind(this);
+    }
+
+    componentDidMount() {
+        const newState = {};
+        if (this.props.location.company) {
+            this.setState({
+                company: this.props.location.company,
+                companyName: this.props.location.company.name,
+                countryName: this.props.location.company.country,
+            });
+        } else {
+            this.fetchForCompany();
+        }
+
+    }
+
+    async fetchForCompany() {
+        const { id } = this.props.match.params
+        const company = await fetchDataService.getCompany(id);
+        this.setState({
+            company: company,
+            companyName: company.name,
+            countryName: company.country,
+        });
     }
 
     handleInputChange(event) {
@@ -33,12 +59,11 @@ export class EditCompany extends Component {
         });
         event.preventDefault();
         const company = {
-            'Id': this.props.location.company.id,
-            'Name': this.state.companyName,
-            'Country': this.state.countryName
+            id: this.state.company.id,
+            name: this.state.companyName,
+            country: this.state.countryName
         }
         const responseCode = await fetchDataService.updateCompany(company);
-        //await new Promise((resolve) => { setTimeout(() => { resolve() }, 2000); });
         if (responseCode === 204) {
             this.setState({
                 redirect: true
@@ -53,6 +78,10 @@ export class EditCompany extends Component {
         const { redirect } = this.state;
         if (redirect) {
             return (<Redirect to="/companies" />);
+        }
+        const { company } = this.state;
+        if (!company) {
+            return (<LoadingScreen />);
         }
         return (
             <fieldset disabled={this.state.loading}>

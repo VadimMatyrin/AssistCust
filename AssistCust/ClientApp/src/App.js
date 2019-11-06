@@ -39,19 +39,19 @@ export default class App extends Component {
 
                 <AuthorizeRoute path='/companies' component={CompaniesPage} />
                 <AuthorizeRoute path='/createcompany' component={CreateCompany} />
-                <AuthorizeRoute path='/editcompany' component={EditCompany} />
+                <AuthorizeRoute path='/editcompany/:id' component={EditCompany} />
 
-                <AuthorizeRoute path='/shops' component={ShopsPage} />
-                <AuthorizeRoute path='/createshop' component={CreateShop} />
-                <AuthorizeRoute path='/editshop' component={EditShop} />
+                <AuthorizeRoute path='/shops/:id' component={ShopsPage} />
+                <AuthorizeRoute path='/createshop/:id' component={CreateShop} />
+                <AuthorizeRoute path='/editshop/:id' component={EditShop} />
                 <AuthorizeRoute path='/shopdetails/:id' component={ShopDetails} />
 
                 <AuthorizeRoute path='/products' component={ProductsPage} />
-                <AuthorizeRoute path='/createproduct' component={CreateProduct} />
-                <AuthorizeRoute path='/editproduct' component={EditProduct} />
+                <AuthorizeRoute path='/createproduct/:id' component={CreateProduct} />
+                <AuthorizeRoute path='/editproduct/:id' component={EditProduct} />
 
-                <AuthorizeRoute path='/createpurchase' component={CreatePurchase} />
-                <AuthorizeRoute path='/editpurchase' component={EditPurchase} />
+                <AuthorizeRoute path='/createpurchase/:id' component={CreatePurchase} />
+                <AuthorizeRoute path='/editpurchase/:id' component={EditPurchase} />
 
                 <AuthorizeRoute path='/fetch-data' component={FetchData} />
                 <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />

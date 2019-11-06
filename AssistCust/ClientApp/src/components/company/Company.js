@@ -65,7 +65,7 @@ export class Company extends Component {
                             <div className="row">
                                 <div className="col-lg-3">
                                     <Link to={{
-                                        pathname: '/editcompany',
+                                        pathname: '/editcompany/' + company.id,
                                         company: company
                                     }}
                                     >
