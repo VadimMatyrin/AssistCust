@@ -10,6 +10,7 @@ export class EditProduct extends Component {
         const product = this.props.location.product;
         this.state = {
             name: product.name,
+            price: product.price,
             description: product.description,
             loading: false,
             redirect: false
@@ -34,9 +35,10 @@ export class EditProduct extends Component {
         });
         event.preventDefault();
         const product = {
-            "id": this.props.location.product.id,
-            "name": this.state.name,
-            "description": this.state.description
+            id: this.props.location.product.id,
+            name: this.state.name,
+            price: parseFloat(this.state.price),
+            description: this.state.description
         }
         const createdId = await fetchDataService.updateProduct(product);
         if (createdId) {
@@ -86,6 +88,24 @@ export class EditProduct extends Component {
                                 class="form-control"
                                 id="description"
                                 value={this.state.description}
+                                onChange={this.handleInputChange} />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label for="price">
+                                Price:
+                        </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input
+                                name="price"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                class="form-control"
+                                id="price"
+                                value={this.state.price}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>

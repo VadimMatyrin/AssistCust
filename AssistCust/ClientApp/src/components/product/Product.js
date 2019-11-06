@@ -52,7 +52,8 @@ export class Product extends Component {
                 <li className="list-group-item">
                     <div className="row">
                         <div className="col-lg-2">{product.name}</div>
-                        <div className="col-lg-8">{product.description}</div>
+                        <div className="col-lg-6">{product.description}</div>
+                        <div className="col-lg-2">{product.price}</div>
                         <div className="col-lg-2">
                             <div className="row">
                                 <div className="col-lg-6">

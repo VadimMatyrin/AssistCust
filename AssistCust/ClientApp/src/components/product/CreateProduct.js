@@ -10,6 +10,7 @@ export class CreateProduct extends Component {
         this.state = {
             name: '',
             description: '',
+            price: 0,
             loading: false,
             redirect: false
         };
@@ -33,9 +34,10 @@ export class CreateProduct extends Component {
         });
         event.preventDefault();
         const product = {
-            "name": this.state.name,
-            "description": this.state.description,
-            "companyId": this.props.location.companyId,
+            name: this.state.name,
+            description: this.state.description,
+            price: parseFloat(this.state.price),
+            companyId: this.props.location.companyId,
         }
         const createdId = await fetchDataService.createProduct(product);
         if (createdId) {
@@ -85,6 +87,24 @@ export class CreateProduct extends Component {
                                 class="form-control"
                                 id="description"
                                 value={this.state.state}
+                                onChange={this.handleInputChange} />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2">
+                            <label for="price">
+                                Price:
+                        </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input
+                                name="price"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                class="form-control"
+                                id="price"
+                                value={this.state.price}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>

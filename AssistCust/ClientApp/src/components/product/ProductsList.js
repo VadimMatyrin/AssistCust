@@ -9,7 +9,8 @@ export class ProductsList extends Component {
                 <li className="list-group-item">
                     <div className="row">
                         <div className="col-lg-2">Name</div>
-                        <div className="col-lg-8">Description</div>
+                        <div className="col-lg-6">Description</div>
+                        <div className="col-lg-2">Price</div>
                         <div className="col-lg-2"><b>Actions</b></div>
                     </div>
                 </li>
