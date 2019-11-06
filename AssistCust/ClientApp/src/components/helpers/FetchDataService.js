@@ -1,4 +1,4 @@
-﻿import authService from '../api-authorization/AuthorizeService'
+﻿import authService from '../api-authorization/AuthorizeService';
 
 export class FetchDataService {
     async getAllUserCompaniesAsync() {
@@ -192,6 +192,54 @@ export class FetchDataService {
         return responseCode;
     }
 
+    async getAllPurchasesByShop(shopId) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/Purchases/GetAllPurchasesByShop/' + shopId, {
+            headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+        });
+        const json = await response.json();
+        return json.purchases;
+    }
+
+    async createPurchase(purchase) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/Purchases/Create', {
+            headers: !token ? {} : {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify(purchase),
+        });
+        const purchaseId = await response.json();
+        return purchaseId;
+    }
+
+    async updatePurchase(purchase) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/Purchases/Update', {
+            headers: !token ? {} : {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            method: 'PUT',
+            body: JSON.stringify(purchase),
+        });
+        const responseCode = response.status;
+        return responseCode;
+    }
+
+    async deletePurchase(purchaseId) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/Purchases/Delete/' + purchaseId, {
+            headers: !token ? {} : {
+                'Authorization': `Bearer ${token}`
+            },
+            method: 'DELETE'
+        });
+        const responseCode = response.status;
+        return responseCode;
+    }
 }
 
 const fetchDataService = new FetchDataService();

@@ -2,11 +2,11 @@
 import fetchDataService from '../helpers/FetchDataService';
 import { LoadingScreen } from '../LoadingScreen';
 import { AttRequestsPage } from '../attentionRequest/AttRequestsPage';
+import { PurchasesPage } from '../purchase/PurchasesPage';
 
 export class ShopDetails extends Component {
     constructor(props) {
         super(props);
-        debugger;
         this.state = {
             shop: this.props.location.shop
         };
@@ -34,6 +34,9 @@ export class ShopDetails extends Component {
                 </div>
                 <div className="col-lg-12">
                     <AttRequestsPage shop={this.state.shop} />
+                </div>
+                <div className="col-lg-12">
+                    <PurchasesPage shop={this.state.shop} />
                 </div>
             </div>
         );
