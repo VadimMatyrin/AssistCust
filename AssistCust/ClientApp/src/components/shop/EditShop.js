@@ -7,19 +7,53 @@ export class EditShop extends Component {
 
     constructor(props) {
         super(props);
-        const shop = this.props.location.shop;
         this.state = {
+            shop: null,
+            shopName: null,
+            state: null,
+            city: null,
+            addressField1: null,
+            addressField2: null,
+            userId: null,
+            loading: false,
+            redirect: false
+        };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.fetchForShop = this.fetchForShop.bind(this);
+    }
+
+
+    componentDidMount() {
+        if (this.props.location.shop) {
+            const shop = this.props.location.shop;
+            this.setState({
+                shop: shop,
+                shopName: shop.shopName,
+                state: shop.state,
+                city: shop.city,
+                addressField1: shop.addressField1,
+                addressField2: shop.addressField2,
+                userId: shop.userId,
+            });
+        } else {
+            this.fetchForShop();
+        }
+
+    }
+
+    async fetchForShop() {
+        const { id } = this.props.match.params
+        const shop = await fetchDataService.getShop(id);
+        this.setState({
+            shop: shop,
             shopName: shop.shopName,
             state: shop.state,
             city: shop.city,
             addressField1: shop.addressField1,
             addressField2: shop.addressField2,
             userId: shop.userId,
-            loading: false,
-            redirect: false
-        };
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        });
     }
 
     handleInputChange(event) {
@@ -38,13 +72,13 @@ export class EditShop extends Component {
         });
         event.preventDefault();
         const shop = {
-            "id": this.props.location.shop.id,
-            "shopName": this.state.shopName,
-            "state": this.state.state,
-            "city": this.state.city,
-            "addressField1": this.state.addressField1,
-            "addressField2": this.state.addressField2,
-            "userId": this.state.userId,
+            id: this.state.shop.id,
+            shopName: this.state.shopName,
+            state: this.state.state,
+            city: this.state.city,
+            addressField1: this.state.addressField1,
+            addressField2: this.state.addressField2,
+            userId: this.state.userId,
         }
         const responseCode = await fetchDataService.updateShop(shop);
         if (responseCode === 204) {
@@ -61,6 +95,10 @@ export class EditShop extends Component {
         const { redirect } = this.state;
         if (redirect) {
             return (<Redirect to="/companies" />);
+        }
+        const { shop } = this.state;
+        if (!shop) {
+            return (<LoadingScreen />);
         }
         return (
             <fieldset disabled={this.state.loading}>

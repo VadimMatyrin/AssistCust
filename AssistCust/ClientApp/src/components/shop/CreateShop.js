@@ -36,14 +36,16 @@ export class CreateShop extends Component {
             loading: true
         });
         event.preventDefault();
+        const { id } = this.props.match.params;
+        const companyId = this.props.location.companyId ? this.props.location.companyId : id;
         const shop = {
-            "shopName": this.state.shopName,
-            "state": this.state.state,
-            "city": this.state.city,
-            "addressField1": this.state.addressField1,
-            "addressField2": this.state.addressField2,
-            "userId": this.state.userId,
-            "companyId": this.props.location.companyId,
+            shopName: this.state.shopName,
+            state: this.state.state,
+            city: this.state.city,
+            addressField1: this.state.addressField1,
+            addressField2: this.state.addressField2,
+            userId: this.state.userId,
+            companyId: companyId,
         }
         const createdId = await fetchDataService.createShop(shop);
         if (createdId) {

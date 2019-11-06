@@ -72,7 +72,7 @@ export class Shop extends Component {
                             <div className="row">
                                 <div className="col-lg-3">
                                     <Link to={{
-                                        pathname: '/editshop',
+                                        pathname: '/editshop/' + shop.id,
                                         shop: shop
                                     }}
                                     >
