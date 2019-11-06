@@ -25,6 +25,7 @@ namespace AssistCust.Application.Products.Commands.CreateProduct
             {
                 Name = request.Name,
                 Description = request.Description,
+                Price = request.Price,
                 CompanyId = request.CompanyId
             };
 

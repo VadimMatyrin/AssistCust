@@ -9,6 +9,7 @@ namespace AssistCust.Application.Products.Queries.ViewModels
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public double Price { get; set; }
         public int CompanyId { get; set; }
 
         public void CreateMappings(Profile configuration)

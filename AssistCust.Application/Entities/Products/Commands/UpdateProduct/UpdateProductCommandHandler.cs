@@ -31,6 +31,7 @@ namespace AssistCust.Application.Products.Commands.CreateProduct
             entity.Id = request.Id;
             entity.Name = request.Name;
             entity.Description = request.Description;
+            entity.Price = request.Price;
 
             await _context.SaveChangesAsync(cancellationToken);
 
