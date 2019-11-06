@@ -18,9 +18,15 @@ namespace AssistCust.Application.Purchases.Commands.CreatePurchase
         }
         public async Task<int> Handle(CreatePurchaseCommand request, CancellationToken cancellationToken)
         {
+            var userId = _userAccessService.UserId;;
+            if ((await _userAccessService.IsCompanyOwnerOrShopManagerAsync(request.CompanyShopId)))
+            {
+                userId = request.UserId;
+            }
+
             var entity = new Purchase
             {
-                UserId = _userAccessService.UserId,
+                UserId = userId,
                 CompanyShopId = request.CompanyShopId,
                 PurchaseTime = request.PurchaseTime
             };

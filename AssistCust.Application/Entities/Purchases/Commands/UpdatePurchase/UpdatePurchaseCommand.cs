@@ -7,5 +7,6 @@ namespace AssistCust.Application.Purchases.Commands.UpdatePurchase
     {
         public int Id { get; set; }
         public DateTime PurchaseTime { get; set; }
+        public DateTime FinishTime { get; set; }
     }
 }

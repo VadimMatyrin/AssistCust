@@ -15,7 +15,7 @@ namespace AssistCust.Application.Purchases.Commands.UpdatePurchase
         {
             _context = context;
             _userAccessService = userAccessService;
-    }
+        }
         public async Task<Unit> Handle(UpdatePurchaseCommand request, CancellationToken cancellationToken)
         {
             if (!(await _userAccessService.IsPurchaseOwnerOrShopManagementAsync(request.Id)))
@@ -30,6 +30,14 @@ namespace AssistCust.Application.Purchases.Commands.UpdatePurchase
 
             entity.Id = request.Id;
             entity.PurchaseTime = request.PurchaseTime;
+            if (request.FinishTime != default)
+            {
+                entity.FinishTime = request.FinishTime;
+            }
+            else
+            {
+                entity.FinishTime = null;
+            }
 
             await _context.SaveChangesAsync(cancellationToken);
 

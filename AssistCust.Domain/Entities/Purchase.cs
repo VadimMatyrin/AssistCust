@@ -12,6 +12,7 @@ namespace AssistCust.Domain.Entities
         public int CompanyShopId { get; set; }
         public CompanyShop CompanyShop { get; set; }
         public DateTime PurchaseTime { get; set; }
+        public DateTime? FinishTime { get; set; }
         public virtual ICollection<PurchaseDetail> PurchaseDetails { get; set; }
     }
 }
