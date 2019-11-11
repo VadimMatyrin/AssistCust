@@ -27,7 +27,7 @@ namespace AssistCust.Application.AttentionRequests.Queries.GetAllShopAttentionRe
 
         public async Task<AttentionRequestsListViewModel> Handle(GetAllShopAttentionRequestsQuery request, CancellationToken cancellationToken)
         {
-            if(!(await _userAccessService.IsShopManagerAsync(request.CompanyShopId)))
+            if(!(await _userAccessService.IsCompanyOwnerOrShopManagerAsync(request.CompanyShopId)))
                 throw new InsufficientPrivilegesException(nameof(AttentionRequest));
 
             var shops = await _context.AttentionRequests.Where(p => p.CompanyShopId == request.CompanyShopId).ToListAsync(cancellationToken);
