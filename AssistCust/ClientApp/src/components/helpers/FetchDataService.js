@@ -268,6 +268,64 @@ export class FetchDataService {
         const responseCode = response.status;
         return responseCode;
     }
+
+    async getAllPurchaseDetailsByPurchase(purchaseId) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/PurchaseDetails/GetAllPurchaseDetailsByPurchase/' + purchaseId, {
+            headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+        });
+        const json = await response.json();
+        return json.purchaseDetails;
+    }
+
+    async getPurchaseDetail(purchaseDetailId) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/PurchaseDetails/Get/' + purchaseDetailId, {
+            headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+        });
+        const json = await response.json();
+        return json;
+    }
+
+    async createPurchaseDetail(purchaseDetail) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/PurchaseDetails/Create', {
+            headers: !token ? {} : {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify(purchaseDetail),
+        });
+        const purchaseId = await response.json();
+        return purchaseId;
+    }
+
+    async updatePurchaseDetail(purchaseDetail) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/PurchaseDetails/Update', {
+            headers: !token ? {} : {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            method: 'PUT',
+            body: JSON.stringify(purchaseDetail),
+        });
+        const responseCode = response.status;
+        return responseCode;
+    }
+
+    async deletePurchaseDetail(purchaseDetailId) {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/PurchaseDetails/Delete/' + purchaseDetailId, {
+            headers: !token ? {} : {
+                'Authorization': `Bearer ${token}`
+            },
+            method: 'DELETE'
+        });
+        const responseCode = response.status;
+        return responseCode;
+    }
 }
 
 const fetchDataService = new FetchDataService();

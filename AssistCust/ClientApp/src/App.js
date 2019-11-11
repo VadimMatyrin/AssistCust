@@ -20,6 +20,11 @@ import { EditProduct } from './components/product/EditProduct';
 import { PurchasesPage } from './components/purchase/PurchasesPage';
 import { CreatePurchase } from './components/purchase/CreatePurchase';
 import { EditPurchase } from './components/purchase/EditPurchase';
+import { PurchaseDetails } from './components/purchase/PurchaseDetails';
+
+import { PurchaseDetailsPage } from './components/purchasedetail/PurchaseDetailsPage';
+import { CreatePurchaseDetail } from './components/purchasedetail/CreatePurchaseDetail';
+import { EditPurchaseDetail } from './components/purchasedetail/EditPurchaseDetail';
 
 import { Counter } from './components/Counter';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
@@ -52,6 +57,11 @@ export default class App extends Component {
 
                 <AuthorizeRoute path='/createpurchase/:id' component={CreatePurchase} />
                 <AuthorizeRoute path='/editpurchase/:id' component={EditPurchase} />
+                <AuthorizeRoute path='/purchasedetails/:id' component={PurchaseDetails} />
+
+                <AuthorizeRoute path='/purchasedetailspage/:id' component={PurchaseDetailsPage} />
+                <AuthorizeRoute path='/createpurchasedetail/:id' component={CreatePurchaseDetail} />
+                <AuthorizeRoute path='/editpurchasedetail/:id' component={EditPurchaseDetail} />
 
                 <AuthorizeRoute path='/fetch-data' component={FetchData} />
                 <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
