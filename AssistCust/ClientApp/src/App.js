@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
 
 import { CompaniesPage } from './components/company/CompaniesPage';
 import { CreateCompany } from './components/company/CreateCompany';
@@ -17,7 +16,6 @@ import { ProductsPage } from './components/product/ProductsPage';
 import { CreateProduct } from './components/product/CreateProduct';
 import { EditProduct } from './components/product/EditProduct';
 
-import { PurchasesPage } from './components/purchase/PurchasesPage';
 import { CreatePurchase } from './components/purchase/CreatePurchase';
 import { EditPurchase } from './components/purchase/EditPurchase';
 import { PurchaseDetails } from './components/purchase/PurchaseDetails';
@@ -26,7 +24,6 @@ import { PurchaseDetailsPage } from './components/purchasedetail/PurchaseDetails
 import { CreatePurchaseDetail } from './components/purchasedetail/CreatePurchaseDetail';
 import { EditPurchaseDetail } from './components/purchasedetail/EditPurchaseDetail';
 
-import { Counter } from './components/Counter';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
@@ -40,7 +37,6 @@ export default class App extends Component {
         return (
             <Layout>
                 <Route exact path='/' component={Home} />
-                <Route path='/counter' component={Counter} />
 
                 <AuthorizeRoute path='/companies' component={CompaniesPage} />
                 <AuthorizeRoute path='/createcompany' component={CreateCompany} />
@@ -63,7 +59,6 @@ export default class App extends Component {
                 <AuthorizeRoute path='/createpurchasedetail/:id' component={CreatePurchaseDetail} />
                 <AuthorizeRoute path='/editpurchasedetail/:id' component={EditPurchaseDetail} />
 
-                <AuthorizeRoute path='/fetch-data' component={FetchData} />
                 <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
             </Layout>
         );
