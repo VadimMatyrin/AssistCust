@@ -59,39 +59,39 @@ export class CreatePurchase extends Component {
         return (
             <fieldset disabled={this.state.loading}>
                 <form onSubmit={this.handleSubmit}>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="userId">
                                 Created by:
                             </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="userId"
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="userId"
                                 value={this.state.userId}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="purchaseTime">
                                 Purchase time:
                             </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="purchaseTime"
                                 type="datetime-local"
-                                class="form-control"
+                                className="form-control"
                                 id="purchaseTime"
                                 value={this.state.purchaseTime}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                     {this.state.loading && <LoadingScreen />}
                 </form>
             </fieldset>

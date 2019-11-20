@@ -5,7 +5,7 @@ export class CompaniesList extends Component {
 
     render() {
         return (
-            <ul class="list-group">
+            <ul className="list-group">
                 <li className="list-group-item">
                     <div className="row">
                         <div className="col-lg-6"><b>Shop name</b></div>

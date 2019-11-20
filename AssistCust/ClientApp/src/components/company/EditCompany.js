@@ -86,39 +86,39 @@ export class EditCompany extends Component {
         return (
             <fieldset disabled={this.state.loading}>
                 <form onSubmit={this.handleSubmit}>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="companyName">
                                 Company name:
                         </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="companyName"
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="companyName"
                                 value={this.state.companyName}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="countryName">
                                 Company country:
                         </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="countryName"
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="countryName"
                                 value={this.state.countryName}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                     {this.state.loading && <LoadingScreen />}
                 </form>
             </fieldset>

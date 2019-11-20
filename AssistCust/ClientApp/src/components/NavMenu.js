@@ -18,6 +18,7 @@ export class NavMenu extends Component {
             collapsed: true,
             authenticated: false,
         };
+        this.changeSiteLanguage = this.changeSiteLanguage.bind(this);
     }
 
     componentDidMount() {
@@ -33,6 +34,10 @@ export class NavMenu extends Component {
         this.setState({
             collapsed: !this.state.collapsed
         });
+    }
+
+    changeSiteLanguage() {
+        this.setState(this.state);
     }
 
     render() {
@@ -55,7 +60,7 @@ export class NavMenu extends Component {
                                 }
                                 <LoginMenu>
                                 </LoginMenu>
-                                <LanguagePicker></LanguagePicker>
+                                <LanguagePicker changeSiteLanguage={this.changeSiteLanguage}></LanguagePicker>
                             </ul>
                         </Collapse>
                     </Container>

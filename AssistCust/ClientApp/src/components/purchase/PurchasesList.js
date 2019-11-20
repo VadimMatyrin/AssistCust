@@ -4,7 +4,7 @@ import { Purchase } from './Purchase';
 export class PurchasesList extends Component {
     render() {
         return (
-            <ul class="list-group">
+            <ul className="list-group">
                 <li className="list-group-item">
                     <div className="row">
                         <div className="col-lg-3">Created by</div>

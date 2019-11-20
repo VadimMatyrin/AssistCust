@@ -87,39 +87,39 @@ export class EditPurchase extends Component {
         return (
             <fieldset disabled={this.state.loading}>
                 <form onSubmit={this.handleSubmit}>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="purchaseTime">
                                 Purchase time:
                             </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="purchaseTime"
                                 type="datetime-local"
-                                class="form-control"
+                                className="form-control"
                                 id="purchaseTime"
                                 value={this.state.purchaseTime}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="finishTime">
                                 Finish time:
                             </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="finishTime"
                                 type="datetime-local"
-                                class="form-control"
+                                className="form-control"
                                 id="finishTime"
                                 value={this.state.finishTime}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                     {this.state.loading && <LoadingScreen />}
                 </form>
             </fieldset>

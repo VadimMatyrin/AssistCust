@@ -90,57 +90,57 @@ export class EditProduct extends Component {
         return (
             <fieldset disabled={this.state.loading}>
                 <form onSubmit={this.handleSubmit}>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="name">
                                 Product name:
                         </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="name"
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="name"
                                 value={this.state.name}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="description">
                                 Description:
                         </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="description"
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="description"
                                 value={this.state.description}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="price">
                                 Price:
                         </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="price"
                                 type="number"
                                 min="0"
                                 step="0.01"
-                                class="form-control"
+                                className="form-control"
                                 id="price"
                                 value={this.state.price}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                     {this.state.loading && <LoadingScreen />}
                 </form>
             </fieldset>

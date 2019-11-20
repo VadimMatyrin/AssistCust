@@ -66,103 +66,103 @@ export class CreateShop extends Component {
         return (
             <fieldset disabled={this.state.loading}>
                 <form onSubmit={this.handleSubmit}>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="shopName">
                                 Shop name:
                         </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="shopName"
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="shopName"
                                 value={this.state.shopName}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="state">
                                 Shop state:
                         </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="state"
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="state"
                                 value={this.state.state}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="city">
                                 Shop city:
                         </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="city"
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="city"
                                 value={this.state.city}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="state">
                                 Address field 1
                         </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="addressField1"
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="addressField1"
                                 value={this.state.addressField1}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="addressField2">
                                 Address field 2
                         </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="addressField2"
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="addressField2"
                                 value={this.state.addressField2}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-2">
+                    <div className="form-group row">
+                        <div className="col-sm-2">
                             <label for="addressField2">
                                 Shop manager id
                         </label>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <input
                                 name="userId"
                                 type="text"
-                                class="form-control"
+                                className="form-control"
                                 id="userId"
                                 value={this.state.userId}
                                 onChange={this.handleInputChange} />
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                     {this.state.loading && <LoadingScreen />}
                 </form>
             </fieldset>
