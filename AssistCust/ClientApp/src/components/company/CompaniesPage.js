@@ -2,6 +2,7 @@
 import { CompaniesList } from './CompaniesList'
 import { Link } from 'react-router-dom';
 import fetchDataService from '../helpers/FetchDataService'
+import strings from '../../localization/localization';
 
 export class CompaniesPage extends Component {
 
@@ -24,12 +25,12 @@ export class CompaniesPage extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-10">
-                        <h1>Your companies:</h1>
+                        <h1>{strings.yourCompanies}:</h1>
                     </div>
                     <div className="col-lg-2">
                         <Link to="/createcompany">
                             <button type="button" className="btn btn-success">
-                                Create new
+                                {strings.createNew}
                             </button>
                         </Link>
                     </div>

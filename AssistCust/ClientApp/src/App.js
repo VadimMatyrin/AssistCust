@@ -33,9 +33,18 @@ import './custom.css'
 export default class App extends Component {
     static displayName = App.name;
 
+    constructor(props) {
+        super(props);
+        this.changeSiteLanguage = this.changeSiteLanguage.bind(this);
+    }
+
+    changeSiteLanguage() {
+        this.forceUpdate();
+    }
+
     render() {
         return (
-            <Layout>
+            <Layout changeSiteLanguage={this.changeSiteLanguage}>
                 <Route exact path='/' component={Home} />
 
                 <AuthorizeRoute path='/companies' component={CompaniesPage} />
