@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { Shop } from './Shop';
+import strings from '../../localization/localization';
 
 export class ShopsList extends Component {
 
@@ -8,12 +9,12 @@ export class ShopsList extends Component {
             <ul className="list-group">
                 <li className="list-group-item">
                     <div className="row">
-                        <div className="col-lg-2">Shop name</div>
-                        <div className="col-lg-2">State</div>
-                        <div className="col-lg-2">City</div>
-                        <div className="col-lg-2">Address 1</div>
-                        <div className="col-lg-2">Address 2</div>
-                        <div className="col-lg-2"><b>Actions</b></div>
+                        <div className="col-lg-2">{strings.shopName}</div>
+                        <div className="col-lg-2">{strings.state}</div>
+                        <div className="col-lg-2">{strings.city}</div>
+                        <div className="col-lg-2">{strings.address1}</div>
+                        <div className="col-lg-2">{strings.address2}</div>
+                        <div className="col-lg-2"><b>{strings.actions}</b></div>
                     </div>
                 </li>
                 {this.props.shops.map((shop) => {

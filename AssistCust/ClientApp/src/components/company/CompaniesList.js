@@ -9,7 +9,7 @@ export class CompaniesList extends Component {
             <ul className="list-group">
                 <li className="list-group-item">
                     <div className="row">
-                        <div className="col-lg-6"><b>{strings.shopName}</b></div>
+                        <div className="col-lg-6"><b>{strings.companyName}</b></div>
                         <div className="col-lg-4"><b>{strings.country}</b></div>
                         <div className="col-lg-2"><b>{strings.actions}</b></div>
                     </div>

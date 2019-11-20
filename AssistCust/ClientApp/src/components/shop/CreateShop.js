@@ -2,6 +2,7 @@
 import fetchDataService from '../helpers/FetchDataService'
 import { Redirect } from 'react-router-dom';
 import { LoadingScreen } from '../LoadingScreen';
+import strings from '../../localization/localization';
 
 export class CreateShop extends Component {
 
@@ -69,7 +70,7 @@ export class CreateShop extends Component {
                     <div className="form-group row">
                         <div className="col-sm-2">
                             <label for="shopName">
-                                Shop name:
+                                {strings.shopName}:
                         </label>
                         </div>
                         <div className="col-sm-6">
@@ -85,7 +86,7 @@ export class CreateShop extends Component {
                     <div className="form-group row">
                         <div className="col-sm-2">
                             <label for="state">
-                                Shop state:
+                                {strings.state}:
                         </label>
                         </div>
                         <div className="col-sm-6">
@@ -101,7 +102,7 @@ export class CreateShop extends Component {
                     <div className="form-group row">
                         <div className="col-sm-2">
                             <label for="city">
-                                Shop city:
+                                {strings.city}:
                         </label>
                         </div>
                         <div className="col-sm-6">
@@ -117,7 +118,7 @@ export class CreateShop extends Component {
                     <div className="form-group row">
                         <div className="col-sm-2">
                             <label for="state">
-                                Address field 1
+                                {strings.address1}:
                         </label>
                         </div>
                         <div className="col-sm-6">
@@ -133,7 +134,7 @@ export class CreateShop extends Component {
                     <div className="form-group row">
                         <div className="col-sm-2">
                             <label for="addressField2">
-                                Address field 2
+                                {strings.address2}:
                         </label>
                         </div>
                         <div className="col-sm-6">
@@ -149,7 +150,7 @@ export class CreateShop extends Component {
                     <div className="form-group row">
                         <div className="col-sm-2">
                             <label for="addressField2">
-                                Shop manager id
+                                {strings.shopManagerId}:
                         </label>
                         </div>
                         <div className="col-sm-6">

@@ -11,6 +11,7 @@ import { LoadingScreen } from '../LoadingScreen';
 import { Link } from 'react-router-dom';
 import { ShopsPage } from '../shop/ShopsPage';
 import { ProductsPage } from '../product/ProductsPage';
+import strings from '../../localization/localization';
 
 export class Company extends Component {
     constructor(props) {
@@ -40,15 +41,15 @@ export class Company extends Component {
 
     submit(companyId) {
         confirmAlert({
-            title: 'Confirm to submit',
-            message: `Are you sure you want to delete this shop?`,
+            title: strings.confirmToSubmit,
+            message: strings.deleteCompanyMessage,
             buttons: [
                 {
-                    label: 'Yes',
+                    label: strings.yes,
                     onClick: () => this.deleteCompany(companyId)
                 },
                 {
-                    label: 'No'
+                    label: strings.no
                 }
             ]
         });
