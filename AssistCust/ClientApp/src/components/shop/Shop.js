@@ -74,7 +74,8 @@ export class Shop extends Component {
                                 <div className="col-lg-3">
                                     <Link to={{
                                         pathname: '/editshop/' + shop.id,
-                                        shop: shop
+                                        shop: shop,
+                                        redirectTo: this.props.redirectTo
                                     }}
                                     >
                                         <button type="button" className="btn btn-primary">

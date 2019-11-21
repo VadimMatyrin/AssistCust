@@ -17,7 +17,8 @@ export class EditShop extends Component {
             addressField2: null,
             userId: null,
             loading: false,
-            redirect: false
+            redirect: false,
+            redirectTo: null
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,6 +37,7 @@ export class EditShop extends Component {
                 addressField1: shop.addressField1,
                 addressField2: shop.addressField2,
                 userId: shop.userId,
+                redirectTo: this.props.location.redirectTo
             });
         } else {
             this.fetchForShop();
@@ -54,6 +56,7 @@ export class EditShop extends Component {
             addressField1: shop.addressField1,
             addressField2: shop.addressField2,
             userId: shop.userId,
+            redirectTo: "/companies"
         });
     }
 
@@ -95,7 +98,7 @@ export class EditShop extends Component {
     render() {
         const { redirect } = this.state;
         if (redirect) {
-            return (<Redirect to="/companies" />);
+            return (<Redirect to={this.state.redirectTo} />);
         }
         const { shop } = this.state;
         if (!shop) {

@@ -29,7 +29,6 @@ export class Company extends Component {
         this.setState({
             loading: true
         });
-        //await new Promise((resolve) => { setTimeout(() => { resolve() }, 2000); });
         const responseCode = await fetchDataService.deleteCompany(companyId);
         if (responseCode === 204) {
             this.props.triggerCompaniesFetch();

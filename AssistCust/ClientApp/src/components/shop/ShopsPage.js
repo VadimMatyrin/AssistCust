@@ -41,7 +41,7 @@ export class ShopsPage extends Component {
                     </div>
                 </div>
                 <div>
-                    <ShopsList shops={this.state.shops} triggerShopsFetch={this.triggerShopsFetch}></ShopsList>
+                    <ShopsList shops={this.state.shops} triggerShopsFetch={this.triggerShopsFetch} redirectTo="/companies"></ShopsList>
                 </div>
             </div>
         );

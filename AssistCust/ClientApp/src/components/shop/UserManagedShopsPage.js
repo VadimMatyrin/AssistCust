@@ -31,7 +31,7 @@ export class UserManagedShopsPage extends Component {
                     </div>
                 </div>
                 <div>
-                    <ShopsList shops={this.state.shops} triggerShopsFetch={this.triggerShopsFetch}></ShopsList>
+                    <ShopsList shops={this.state.shops} triggerShopsFetch={this.triggerShopsFetch} redirectTo="/usermanagedshops"></ShopsList>
                 </div>
             </div>
         );
