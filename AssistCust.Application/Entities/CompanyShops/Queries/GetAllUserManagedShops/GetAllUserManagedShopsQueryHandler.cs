@@ -16,7 +16,7 @@ namespace AssistCust.Application.CompanyShops.Queries.GetAllUserManagedShops
         private readonly IMapper _mapper;
         private readonly IUserAccessService _userAccessService;
 
-        public GetAllCompanyShopsByCompanyQueryHandler(IAssistDbContext context, IMapper mapper, IUserAccessService userAccessService)
+        public GetAllUserManagedShopsQueryHandler(IAssistDbContext context, IMapper mapper, IUserAccessService userAccessService)
         {
             _context = context;
             _mapper = mapper;
