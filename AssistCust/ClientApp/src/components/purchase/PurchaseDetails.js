@@ -2,6 +2,7 @@
 import fetchDataService from '../helpers/FetchDataService';
 import { LoadingScreen } from '../LoadingScreen';
 import { PurchaseDetailsPage } from '../purchasedetail/PurchaseDetailsPage'
+import strings from '../../localization/localization';
 
 export class PurchaseDetails extends Component {
     constructor(props) {
@@ -24,11 +25,11 @@ export class PurchaseDetails extends Component {
         return (
             <div className="row">
                 <div className="col-lg-12">
-                    <h1>Purchase: {purchase.id}</h1>
-                    <h3>Created by: {purchase.userId}</h3>
-                    <h3>Start time: {purchase.purchaseTime}</h3>
-                    <h3>Finish time: {purchase.finishTime}</h3>
-                    <h3>Shop: {purchase.companyShopId}</h3>
+                    <h1>{strings.purchase}: {purchase.id}</h1>
+                    <h3>{strings.createdBy}: {purchase.userId}</h3>
+                    <h3>{strings.startPurchaseTime}: {purchase.purchaseTime}</h3>
+                    <h3>{strings.finishPurchaseTime}: {purchase.finishTime}</h3>
+                    <h3>{strings.shop}: {purchase.companyShopId}</h3>
                 </div>
                 <div className="col-lg-12">
                     <PurchaseDetailsPage purchase={purchase} />

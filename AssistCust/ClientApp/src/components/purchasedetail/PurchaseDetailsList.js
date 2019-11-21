@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { PurchaseDetail } from './PurchaseDetail';
+import strings from '../../localization/localization';
 
 export class PurchaseDetailsList extends Component {
     render() {
@@ -7,8 +8,8 @@ export class PurchaseDetailsList extends Component {
             <ul class="list-group">
                 <li className="list-group-item">
                     <div className="row">
-                        <div className="col-lg-6">Product</div>
-                        <div className="col-lg-6">Amount</div>
+                        <div className="col-lg-6">{strings.product}</div>
+                        <div className="col-lg-6">{strings.amount}</div>
                     </div>
                 </li>
                 {this.props.purchaseDetails.map((purchaseDetail) => {

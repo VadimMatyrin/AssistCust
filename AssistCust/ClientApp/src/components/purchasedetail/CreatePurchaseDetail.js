@@ -2,6 +2,7 @@
 import fetchDataService from '../helpers/FetchDataService';
 import { Redirect } from 'react-router-dom';
 import { LoadingScreen } from '../LoadingScreen';
+import strings from '../../localization/localization';
 
 export class CreatePurchaseDetail extends Component {
 
@@ -63,7 +64,7 @@ export class CreatePurchaseDetail extends Component {
                     <div class="form-group row">
                         <div class="col-sm-2">
                             <label for="productId">
-                                Product:
+                                {strings.product}:
                             </label>
                         </div>
                         <div class="col-sm-6">
@@ -79,7 +80,7 @@ export class CreatePurchaseDetail extends Component {
                     <div class="form-group row">
                         <div class="col-sm-2">
                             <label for="amount">
-                                Amount:
+                                {strings.amount}:
                             </label>
                         </div>
                         <div class="col-sm-6">

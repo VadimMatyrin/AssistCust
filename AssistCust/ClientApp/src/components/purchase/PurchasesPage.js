@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import fetchDataService from '../helpers/FetchDataService';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import strings from '../../localization/localization';
 
 export class PurchasesPage extends Component {
 
@@ -26,7 +27,7 @@ export class PurchasesPage extends Component {
             <div className="container rounded border border-secondary" style={{ marginTop: "20px", marginBottom: "20px", padding: "10px" }}>
                 <div className="row">
                     <div className="col-lg-10">
-                        <h3> {this.props.shop.shopName} purchases:</h3>
+                        <h3> {this.props.shop.shopName} {strings.purchases}:</h3>
                     </div>
                     <div className="col-lg-2">
                         <Link to={{

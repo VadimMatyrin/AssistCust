@@ -7,6 +7,7 @@ import fetchDataService from '../helpers/FetchDataService'
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { LoadingScreen } from '../LoadingScreen';
 import { Link } from 'react-router-dom';
+import strings from '../../localization/localization';
 
 export class AttRequest extends Component {
     constructor(props) {
@@ -49,15 +50,15 @@ export class AttRequest extends Component {
 
     submitResolve() {
         confirmAlert({
-            title: 'Confirm to submit',
-            message: `Are you sure you want to resolve this attention request?`,
+            title: strings.confirmToSubmit,
+            message: strings.resolveAttRequestMessage,
             buttons: [
                 {
-                    label: 'Yes',
+                    label: strings.yes,
                     onClick: () => this.resolveRequest()
                 },
                 {
-                    label: 'No'
+                    label: strings.no
                 }
             ]
         });
@@ -65,15 +66,15 @@ export class AttRequest extends Component {
 
     submit(productId) {
         confirmAlert({
-            title: 'Confirm to submit',
-            message: `Are you sure you want to delete this attention request?`,
+            title: strings.confirmToSubmit,
+            message: strings.deleteAttRequestMessage,
             buttons: [
                 {
-                    label: 'Yes',
+                    label: strings.yes,
                     onClick: () => this.deleteAttRequest(productId)
                 },
                 {
-                    label: 'No'
+                    label: strings.no
                 }
             ]
         });

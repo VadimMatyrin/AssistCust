@@ -2,6 +2,7 @@
 import fetchDataService from '../helpers/FetchDataService';
 import { Redirect } from 'react-router-dom';
 import { LoadingScreen } from '../LoadingScreen';
+import strings from '../../localization/localization';
 
 export class CreatePurchase extends Component {
 
@@ -62,7 +63,7 @@ export class CreatePurchase extends Component {
                     <div className="form-group row">
                         <div className="col-sm-2">
                             <label for="userId">
-                                Created by:
+                                {strings.createdBy}:
                             </label>
                         </div>
                         <div className="col-sm-6">
@@ -78,7 +79,7 @@ export class CreatePurchase extends Component {
                     <div className="form-group row">
                         <div className="col-sm-2">
                             <label for="purchaseTime">
-                                Purchase time:
+                                {strings.startPurchaseTime}:
                             </label>
                         </div>
                         <div className="col-sm-6">

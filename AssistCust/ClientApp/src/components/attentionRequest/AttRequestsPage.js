@@ -3,6 +3,7 @@ import { AttRequestsList } from './AttRequestsList'
 import { Link } from 'react-router-dom';
 import fetchDataService from '../helpers/FetchDataService'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import strings from '../../localization/localization';
 
 export class AttRequestsPage extends Component {
 
@@ -25,7 +26,7 @@ export class AttRequestsPage extends Component {
             <div className="container rounded border border-secondary" style={{ marginTop: "20px", marginBottom: "20px", padding: "10px" }}>
                 <div className="row">
                     <div className="col-lg-12">
-                        <h3> {this.props.shop.shopName} requests:</h3>
+                        <h3> {this.props.shop.shopName} {strings.requests}:</h3>
                     </div>
                 </div>
                 <div>
