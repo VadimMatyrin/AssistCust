@@ -21,7 +21,6 @@ export class EditCompany extends Component {
     }
 
     componentDidMount() {
-        const newState = {};
         if (this.props.location.company) {
             this.setState({
                 company: this.props.location.company,

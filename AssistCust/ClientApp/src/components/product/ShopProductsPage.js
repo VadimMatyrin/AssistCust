@@ -1,9 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { ProductsList } from './ProductsList'
-import { Link } from 'react-router-dom';
 import fetchDataService from '../helpers/FetchDataService'
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import strings from '../../localization/localization';
 
 export class ShopProductsPage extends Component {

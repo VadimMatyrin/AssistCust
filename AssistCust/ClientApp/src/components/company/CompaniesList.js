@@ -15,7 +15,7 @@ export class CompaniesList extends Component {
                     </div>
                 </li>
                 {this.props.companies.map((company) => {
-                    return (<Company company={company} triggerCompaniesFetch={this.props.triggerCompaniesFetch}></Company>);
+                    return (<Company company={company} triggerCompaniesFetch={this.props.triggerCompaniesFetch} key={company.id}></Company>);
                 })}
             </ul>
         );

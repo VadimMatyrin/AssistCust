@@ -25,7 +25,6 @@ export class LoadingScreen extends React.Component {
                         color="#0044ff"
                         height={100}
                         width={100}
-                        timeout={10000}
                     />
                 </div>
             </>

@@ -17,7 +17,7 @@ export class AttRequestsList extends Component {
                     </div>
                 </li>
                 {this.props.attRequests.map((attRequest) => {
-                    return (<AttRequest attRequest={attRequest} triggerAttRequestsFetch={this.props.triggerAttRequestsFetch}></AttRequest>);
+                    return (<AttRequest attRequest={attRequest} triggerAttRequestsFetch={this.props.triggerAttRequestsFetch} key={attRequest.id}></AttRequest>);
                 })}
             </ul>
         );

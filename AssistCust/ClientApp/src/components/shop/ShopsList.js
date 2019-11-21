@@ -23,7 +23,7 @@ export class ShopsList extends Component {
                     </div>
                 </li>
                 {this.props.shops.map((shop) => {
-                    return (<Shop shop={shop} triggerShopsFetch={this.props.triggerShopsFetch} redirectTo={this.props.redirectTo} showProducts={this.props.showProducts}></Shop>);
+                    return (<Shop shop={shop} triggerShopsFetch={this.props.triggerShopsFetch} redirectTo={this.props.redirectTo} showProducts={this.props.showProducts} key={shop.id}></Shop>);
                 })}
             </ul>
         );

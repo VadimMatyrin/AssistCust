@@ -47,10 +47,8 @@ export class LanguagePicker extends Component {
     render() {
         return (
             <NavItem>
-                <select className="form-control" onChange={this.changeLanguageFromSelect}>
+                <select className="form-control" onChange={this.changeLanguageFromSelect} defaultValue={this.state.language}>
                     {this.state.strings.getAvailableLanguages().map((l) => {
-                        if (this.state.language === l)
-                            return <option value={l} selected="selected" key={l}>{l.toUpperCase()}</option>
                         return <option value={l} key={l}>{l.toUpperCase()}</option>
                     })}
                 </select>

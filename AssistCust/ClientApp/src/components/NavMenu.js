@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { LoginMenu } from './api-authorization/LoginMenu';
 import authService from './api-authorization/AuthorizeService';
 import strings from '../localization/localization';
-import { LanguagePicker } from './languagePicker/LanguagePicker';
+import { LanguagePicker } from './languagePicker/languagePicker';
 import './NavMenu.css';
 
 export class NavMenu extends Component {

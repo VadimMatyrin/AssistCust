@@ -19,7 +19,7 @@ export class ProductsList extends Component {
                     </div>
                 </li>
                 {this.props.products.map((product) => {
-                    return (<Product product={product} triggerProductsFetch={this.props.triggerProductsFetch} readonly={this.props.readonly}></Product>);
+                    return (<Product product={product} triggerProductsFetch={this.props.triggerProductsFetch} readonly={this.props.readonly} key={product.id}></Product>);
                 })}
             </ul>
         );

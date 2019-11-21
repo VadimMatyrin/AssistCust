@@ -6,7 +6,6 @@ import { confirmAlert } from 'react-confirm-alert';
 import fetchDataService from '../helpers/FetchDataService'
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { LoadingScreen } from '../LoadingScreen';
-import { Link } from 'react-router-dom';
 import strings from '../../localization/localization';
 
 export class AttRequest extends Component {

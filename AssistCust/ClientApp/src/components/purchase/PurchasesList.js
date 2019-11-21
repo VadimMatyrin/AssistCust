@@ -15,7 +15,7 @@ export class PurchasesList extends Component {
                     </div>
                 </li>
                 {this.props.purchases.map((purchase) => {
-                    return (<Purchase purchase={purchase} triggerPurchasesFetch={this.props.triggerPurchasesFetch} />);
+                    return (<Purchase purchase={purchase} triggerPurchasesFetch={this.props.triggerPurchasesFetch} key={purchase.id} />);
                 })}
             </ul>
         );

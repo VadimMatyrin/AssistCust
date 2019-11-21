@@ -1,8 +1,6 @@
 ﻿import React, { Component } from 'react';
-import { AttRequestsList } from './AttRequestsList'
-import { Link } from 'react-router-dom';
-import fetchDataService from '../helpers/FetchDataService'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AttRequestsList } from './AttRequestsList';
+import fetchDataService from '../helpers/FetchDataService';
 import strings from '../../localization/localization';
 
 export class AttRequestsPage extends Component {
