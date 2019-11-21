@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWrench } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTags } from '@fortawesome/free-solid-svg-icons';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { confirmAlert } from 'react-confirm-alert';
 import fetchDataService from '../helpers/FetchDataService'
@@ -10,13 +11,15 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { LoadingScreen } from '../LoadingScreen';
 import { Link } from 'react-router-dom';
 import strings from '../../localization/localization';
+import { ShopProductsPage } from '../product/ShopProductsPage';
 
 export class Shop extends Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: false,
-            redirectToShop: false
+            redirectToShop: false,
+            showProducts: false
         };
         this.submit = this.submit.bind(this);
         this.deleteShop = this.deleteShop.bind(this);
@@ -58,7 +61,7 @@ export class Shop extends Component {
             return (<Redirect to={{
                 pathname: `/shopdetails/${shop.id}`,
                 shop: shop
-            }}/>);
+            }} />);
         }
         return (
             <>
@@ -68,8 +71,8 @@ export class Shop extends Component {
                         <div className="col-lg-2">{shop.state}</div>
                         <div className="col-lg-2">{shop.city}</div>
                         <div className="col-lg-2">{shop.addressField1}</div>
-                        <div className="col-lg-2">{shop.addressField2}</div>
-                        <div className="col-lg-2">
+                        <div className="col-lg-1">{shop.addressField2}</div>
+                        <div className="col-lg-3">
                             <div className="row">
                                 <div className="col-lg-3">
                                     <Link to={{
@@ -93,11 +96,21 @@ export class Shop extends Component {
                                         <FontAwesomeIcon icon={faInfoCircle} />
                                     </button>
                                 </div>
+                                {this.props.showProducts &&
+                                    <div className="col-lg-3">
+                                        <button type="button" className="btn btn-info" onClick={(e) => this.setState({
+                                            showProducts: !this.state.showProducts
+                                        })}>
+                                            <FontAwesomeIcon icon={faTags} />
+                                        </button>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
                 </li>
                 {this.state.loading && <LoadingScreen />}
+                {this.state.showProducts && <ShopProductsPage shop={this.props.shop} />}
             </>
         );
     }

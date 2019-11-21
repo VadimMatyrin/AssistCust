@@ -1,25 +1,25 @@
 ﻿import React, { Component } from 'react';
-import { ShopsList } from './ShopsList'
+import { ProductsList } from './ProductsList'
 import { Link } from 'react-router-dom';
 import fetchDataService from '../helpers/FetchDataService'
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import strings from '../../localization/localization';
 
-export class UserManagedShopsPage extends Component {
+export class ShopProductsPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { shops: [], };
-        this.triggerShopsFetch = this.triggerShopsFetch.bind(this);
+        this.state = { products: [], };
+        this.triggerProductsFetch = this.triggerProductsFetch.bind(this);
     }
 
     componentDidMount() {
-        this.getAllUserManagedShops();
+        this.getAllProductsByCompany();
     }
 
-    triggerShopsFetch() {
-        this.getAllUserManagedShops();
+    triggerProductsFetch() {
+        this.getAllProductsByCompany();
     }
 
     render() {
@@ -27,19 +27,19 @@ export class UserManagedShopsPage extends Component {
             <div className="container rounded border border-secondary" style={{ marginTop: "20px", marginBottom: "20px", padding: "10px" }}>
                 <div className="row">
                     <div className="col-lg-10">
-                        <h3> {strings.userManagedShops}:</h3>
+                        <h3> {this.props.shop.name} {strings.products}:</h3>
                     </div>
                 </div>
                 <div>
-                    <ShopsList shops={this.state.shops} triggerShopsFetch={this.triggerShopsFetch} redirectTo="/usermanagedshops" showProducts={true}></ShopsList>
+                    <ProductsList products={this.state.products} triggerProductsFetch={this.triggerProductsFetch} readonly={true}></ProductsList>
                 </div>
             </div>
         );
     }
 
-    async getAllUserManagedShops() {
-        const shops = await fetchDataService.getAllUserManagedShops();
-        this.setState({ shops });
-        console.log(shops);
+    async getAllProductsByCompany() {
+        const products = await fetchDataService.getAllProductsByCompany(this.props.shop.companyId);
+        this.setState({ products });
+        console.log(products);
     }
 }

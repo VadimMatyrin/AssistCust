@@ -14,6 +14,7 @@ import { EditShop } from './components/shop/EditShop';
 import { ShopDetails } from './components/shop/ShopDetails';
 
 import { ProductsPage } from './components/product/ProductsPage';
+import { ShopProductsPage } from './components/product/ShopProductsPage';
 import { CreateProduct } from './components/product/CreateProduct';
 import { EditProduct } from './components/product/EditProduct';
 
@@ -59,6 +60,7 @@ export default class App extends Component {
                 <AuthorizeRoute path='/shopdetails/:id' component={ShopDetails} />
 
                 <AuthorizeRoute path='/products' component={ProductsPage} />
+                <AuthorizeRoute path='/shopproducts' component={ShopProductsPage} />
                 <AuthorizeRoute path='/createproduct/:id' component={CreateProduct} />
                 <AuthorizeRoute path='/editproduct/:id' component={EditProduct} />
 

@@ -13,11 +13,13 @@ export class ProductsList extends Component {
                         <div className="col-lg-2">{strings.name}</div>
                         <div className="col-lg-5">{strings.description}</div>
                         <div className="col-lg-2">{strings.price}</div>
-                        <div className="col-lg-2"><b>{strings.actions}</b></div>
+                        {!this.props.readonly &&
+                            < div className="col-lg-2"><b>{strings.actions}</b></div>
+                        }
                     </div>
                 </li>
                 {this.props.products.map((product) => {
-                    return (<Product product={product} triggerProductsFetch={this.props.triggerProductsFetch}></Product>);
+                    return (<Product product={product} triggerProductsFetch={this.props.triggerProductsFetch} readonly={this.props.readonly}></Product>);
                 })}
             </ul>
         );
