@@ -2,6 +2,7 @@
 using AssistCust.Application.CompanyShops.Commands.DeleteCompanyShop;
 using AssistCust.Application.CompanyShops.Commands.UpdateCompanyShop;
 using AssistCust.Application.CompanyShops.Queries.GetAllCompanyShopsByCompany;
+using AssistCust.Application.CompanyShops.Queries.GetAllUserManagedShops;
 using AssistCust.Application.CompanyShops.Queries.GetCompanyShop;
 using AssistCust.Application.CompanyShops.Queries.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -22,6 +23,12 @@ namespace AssistCust.Controllers
         public Task<CompanyShopsListViewModel> GetAllCompanyShopsByCompany(int id)
         {
             return Mediator.Send(new GetAllCompanyShopsByCompanyQuery { CompanyId = id });
+        }
+
+        [HttpGet]
+        public Task<CompanyShopsListViewModel> GetAllUserManagedShops()
+        {
+            return Mediator.Send(new GetAllUserManagedShopsQuery());
         }
 
         [HttpPost]
