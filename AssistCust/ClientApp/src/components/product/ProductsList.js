@@ -9,8 +9,9 @@ export class ProductsList extends Component {
             <ul className="list-group">
                 <li className="list-group-item">
                     <div className="row">
+                        <div className="col-lg-1">ID</div>
                         <div className="col-lg-2">{strings.name}</div>
-                        <div className="col-lg-6">{strings.description}</div>
+                        <div className="col-lg-5">{strings.description}</div>
                         <div className="col-lg-2">{strings.price}</div>
                         <div className="col-lg-2"><b>{strings.actions}</b></div>
                     </div>
