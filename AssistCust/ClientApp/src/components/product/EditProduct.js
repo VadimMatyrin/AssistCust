@@ -2,6 +2,7 @@
 import fetchDataService from '../helpers/FetchDataService'
 import { Redirect } from 'react-router-dom';
 import { LoadingScreen } from '../LoadingScreen';
+import strings from '../../localization/localization';
 
 export class EditProduct extends Component {
 
@@ -93,7 +94,7 @@ export class EditProduct extends Component {
                     <div className="form-group row">
                         <div className="col-sm-2">
                             <label for="name">
-                                Product name:
+                                {strings.name}:
                         </label>
                         </div>
                         <div className="col-sm-6">
@@ -109,7 +110,7 @@ export class EditProduct extends Component {
                     <div className="form-group row">
                         <div className="col-sm-2">
                             <label for="description">
-                                Description:
+                                {strings.description}:
                         </label>
                         </div>
                         <div className="col-sm-6">
@@ -125,7 +126,7 @@ export class EditProduct extends Component {
                     <div className="form-group row">
                         <div className="col-sm-2">
                             <label for="price">
-                                Price:
+                                {strings.price}:
                         </label>
                         </div>
                         <div className="col-sm-6">

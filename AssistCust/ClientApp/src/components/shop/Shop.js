@@ -9,6 +9,7 @@ import fetchDataService from '../helpers/FetchDataService'
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { LoadingScreen } from '../LoadingScreen';
 import { Link } from 'react-router-dom';
+import strings from '../../localization/localization';
 
 export class Shop extends Component {
     constructor(props) {
@@ -36,15 +37,15 @@ export class Shop extends Component {
 
     submit(shopId) {
         confirmAlert({
-            title: 'Confirm to submit',
-            message: `Are you sure you want to delete this shop?`,
+            title: strings.confirmToSubmit,
+            message: strings.deleteShopMessage,
             buttons: [
                 {
-                    label: 'Yes',
+                    label: strings.yes,
                     onClick: () => this.deleteShop(shopId)
                 },
                 {
-                    label: 'No'
+                    label: strings.no
                 }
             ]
         });
