@@ -49,8 +49,15 @@ export class NavMenu extends Component {
                                     <NavLink tag={Link} className="text-dark" to="/">{strings.home}</NavLink>
                                 </NavItem>
                                 {
-                                    authenticated && <NavItem>
+                                    authenticated &&
+                                    <NavItem>
                                         <NavLink tag={Link} className="text-dark" to="/companies">{strings.companies}</NavLink>
+                                    </NavItem>
+                                }
+                                {
+                                    authenticated &&
+                                    <NavItem>
+                                        <NavLink tag={Link} className="text-dark" to="/usermanagedshops">{strings.userManagedShops}</NavLink>
                                     </NavItem>
                                 }
                                 <LoginMenu>

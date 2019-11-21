@@ -69,6 +69,15 @@ export class FetchDataService {
         return json.companyShops;
     }
 
+    async getAllUserManagedShops() {
+        const token = await authService.getAccessToken();
+        const response = await fetch('/api/CompanyShops/GetAllUserManagedShops', {
+            headers: !token ? {} : { 'Authorization': `Bearer ${token}` }
+        });
+        const json = await response.json();
+        return json.companyShops;
+    }
+
     async getShop(shopId) {
         const token = await authService.getAccessToken();
         const response = await fetch('/api/CompanyShops/Get/' + shopId, {

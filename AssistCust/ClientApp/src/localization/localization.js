@@ -49,6 +49,8 @@ const strings = new LocalizedStrings({
         details: "details",
         product: "Product",
         amount: "Amount",
+        userManagedShops: "Your shops",
+        noShops: "There are no shops there yet",
     },
     ua: {
         home: "Домашня",
@@ -98,6 +100,8 @@ const strings = new LocalizedStrings({
         details: "деталі",
         product: "Продукт",
         amount: "Кількість",
+        userManagedShops: "Ваші крамниці",
+        noShops: "Тут зараз немає крамниць",
     }
 });
 
