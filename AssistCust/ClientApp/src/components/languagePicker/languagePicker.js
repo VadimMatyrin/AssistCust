@@ -26,7 +26,6 @@ export class LanguagePicker extends Component {
     }
 
     useStateWithLocalStorage(localStorageKey) {
-        debugger;
         const setValue = function (value) {
             localStorage.setItem(localStorageKey, value);
         };

@@ -30,6 +30,8 @@ import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
 
+import { UserProfile } from './components/profile/UserProfile';
+
 import './custom.css'
 
 export default class App extends Component {
@@ -71,6 +73,8 @@ export default class App extends Component {
                 <AuthorizeRoute path='/purchasedetailspage/:id' component={PurchaseDetailsPage} />
                 <AuthorizeRoute path='/createpurchasedetail/:id' component={CreatePurchaseDetail} />
                 <AuthorizeRoute path='/editpurchasedetail/:id' component={EditPurchaseDetail} />
+
+                <AuthorizeRoute path='/userprofile' component={UserProfile} />
 
                 <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
             </Layout>

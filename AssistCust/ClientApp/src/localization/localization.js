@@ -51,6 +51,8 @@ const strings = new LocalizedStrings({
         amount: "Amount",
         userManagedShops: "Your shops",
         noShops: "There are no shops there yet",
+        userProfile: "Your data",
+        userId: "Yours id",
     },
     ua: {
         home: "Домашня",
@@ -102,6 +104,8 @@ const strings = new LocalizedStrings({
         amount: "Кількість",
         userManagedShops: "Ваші крамниці",
         noShops: "Тут зараз немає крамниць",
+        userProfile: "Ваші дані",
+        userId: "Ваш Id",
     }
 });
 
