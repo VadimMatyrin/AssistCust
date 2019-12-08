@@ -20,9 +20,15 @@ namespace AssistCust.Controllers
         }
 
         [HttpGet("{id}")]
-        public Task<PurchaseListViewModel> GetAllPurchasesByUser(string id)
+        public Task<PurchaseListViewModel> GetAllPurchasesInShopByUser(string id)
         {
             return Mediator.Send(new GetAllPurchasesInShopByUserQuery { UserId = id });
+        }
+
+        [HttpGet]
+        public Task<PurchaseListViewModel> GetAllPurchasesByUser()
+        {
+            return Mediator.Send(new GetAllPurchasesByUserQuery());
         }
 
         [HttpGet("{id}")]
