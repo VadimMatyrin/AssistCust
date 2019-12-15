@@ -7,7 +7,7 @@ namespace AssistCust.Application.AttentionRequests.Commands.CreateAttentionReque
     {
         public string Message { get; set; }
         public DateTime CreationDate { get; set; }
-        public string ManagerId { get; set; }
+        //public string ManagerId { get; set; }
         public int CompanyShopId { get; set; } 
     }
 }
