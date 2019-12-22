@@ -31,7 +31,7 @@ namespace AssistCust.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> CreateIoTPurchaseDetail([FromBody] FinishIoTPurchaseCommand command)
+        public async Task<IActionResult> FinishIoTPurhcase([FromBody] FinishIoTPurchaseCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
