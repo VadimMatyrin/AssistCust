@@ -1,6 +1,7 @@
 ﻿using AssistCust.Application.Entities.IoTDevices.Commands.CreateIoTDevice;
 using AssistCust.Application.Entities.IoTDevices.Commands.CreateIoTPurchase;
 using AssistCust.Application.Entities.IoTDevices.Commands.CreateIoTPurchaseDetail;
+using AssistCust.Application.Entities.IoTDevices.Commands.FinishIoTPurchase;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,13 @@ namespace AssistCust.Controllers
         public Task<int> CreateIoTPurchaseDetail([FromBody] CreateIoTPurchaseDetailCommand command)
         {
             return Mediator.Send(command);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> CreateIoTPurchaseDetail([FromBody] FinishIoTPurchaseCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
         }
     }
 }
