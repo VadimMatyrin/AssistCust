@@ -18,5 +18,6 @@ namespace AssistCust.Domain.Entities
         public int CompanyId { get; set; }
         public Company Company { get; set; }
         public virtual ICollection<Purchase> Purchases { get; set; }
+        public virtual ICollection<IoTDevice> IoTDevices { get; set; }
     }
 }

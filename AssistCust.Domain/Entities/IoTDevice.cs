@@ -8,5 +8,7 @@ namespace AssistCust.Domain.Entities
     {
         public Guid Id { get; set; }
         public DateTime? RegistrationTime { get; set; }
+        public int CompanyShopId { get;set; }
+        public CompanyShop CompanyShop { get; set; }
     }
 }
