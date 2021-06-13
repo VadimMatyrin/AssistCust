@@ -27,7 +27,18 @@ export class Purchase extends Component {
         });
         const responseCode = await fetchDataService.deletePurchase(purchaseId);
         if (responseCode === 204) {
-            this.props.triggerProductsFetch();
+            this.props.triggerPurchasesFetch();
+        }
+        if (responseCode === 500) {
+            confirmAlert({
+                title: strings.deletionError,
+                message: strings.associatedDataPresent,
+                buttons: [
+                    {
+                        label: strings.ok
+                    }
+                ]
+            });
         }
         this.setState({
             loading: false

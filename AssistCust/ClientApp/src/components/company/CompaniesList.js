@@ -5,6 +5,11 @@ import strings from '../../localization/localization';
 export class CompaniesList extends Component {
 
     render() {
+        if (this.props.companies.length === 0) {
+            return (
+                <h2>{strings.noCompanies}</h2>
+            );
+        }
         return (
             <ul className="list-group">
                 <li className="list-group-item">

@@ -10,11 +10,11 @@ namespace AssistCust.Persistance.Configurations
         {
             builder.Property(e => e.Name)
                 .IsRequired()
-                .HasMaxLength(15);
+                .HasMaxLength(35);
 
             builder.Property(e => e.Description)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(100);
 
             builder.HasOne(e => e.Company)
                 .WithMany(e => e.Products)

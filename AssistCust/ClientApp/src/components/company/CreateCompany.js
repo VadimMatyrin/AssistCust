@@ -12,7 +12,8 @@ export class CreateCompany extends Component {
             companyName: '',
             countryName: '',
             loading: false,
-            redirect: false
+            redirect: false,
+            errorMessage: null
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,7 +25,8 @@ export class CreateCompany extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            errorMessage: null
         });
     }
 
@@ -34,19 +36,30 @@ export class CreateCompany extends Component {
         });
         event.preventDefault();
         const company = {
-            'Name': this.state.companyName,
-            'Country': this.state.countryName
+            name: this.state.companyName,
+            country: this.state.countryName
         }
-        const createdId = await fetchDataService.createCompany(company);
-        //await new Promise((resolve) => { setTimeout(() => { resolve() }, 2000); });
-        if (createdId) {
+        try {
+            if (company.name.length < 3) {
+                throw "Validation error";
+            }
+            const createdId = await fetchDataService.createCompany(company);
+            //await new Promise((resolve) => { setTimeout(() => { resolve() }, 2000); });
+            if (createdId) {
+                this.setState({
+                    redirect: true
+                });
+            }
             this.setState({
-                redirect: true
+                loading: false
             });
         }
-        this.setState({
-            loading: false
-        });
+        catch (e) {
+            this.setState({
+                loading: false,
+                errorMessage: strings.errorMessage
+            });
+        }
     }
 
     render() {
@@ -56,6 +69,7 @@ export class CreateCompany extends Component {
         }
         return (
             <fieldset disabled={this.state.loading}>
+                {this.state.errorMessage && <span style={{color: "red" }}>{this.state.errorMessage}</span>}
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
                         <div className="col-sm-2">

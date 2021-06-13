@@ -14,7 +14,8 @@ export class EditPurchase extends Component {
             purchaseTime: null,
             finishTime: null,
             loading: false,
-            redirect: false
+            redirect: false,
+            errorMessage: null
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,7 +52,8 @@ export class EditPurchase extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            errorMessage: null
         });
     }
 
@@ -65,15 +67,29 @@ export class EditPurchase extends Component {
             purchaseTime: `${this.state.purchaseTime}Z`,
             finishTime: `${this.state.finishTime}:00Z`,
         }
-        const responseCode = await fetchDataService.updatePurchase(purchase);
-        if (responseCode === 204) {
+        try {
+            const responseCode = await fetchDataService.updatePurchase(purchase);
+            if (responseCode === 204) {
+                this.setState({
+                    redirect: true
+                });
+            }
+            if (responseCode === 500) {
+                this.setState({
+                    errorMessage: strings.errorMessage
+                });
+            }
             this.setState({
-                redirect: true
+                loading: false
             });
+        } catch (e) {
+            this.setState({
+                loading: false,
+                errorMessage: strings.errorMessage
+            });
+
         }
-        this.setState({
-            loading: false
-        });
+
     }
 
     render() {
@@ -87,6 +103,7 @@ export class EditPurchase extends Component {
         }
         return (
             <fieldset disabled={this.state.loading}>
+                {this.state.errorMessage && <span style={{ color: "red" }}>{this.state.errorMessage}</span>}
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
                         <div className="col-sm-2">

@@ -50,9 +50,17 @@ const strings = new LocalizedStrings({
         product: "Product",
         amount: "Amount",
         userManagedShops: "Your shops",
-        noShops: "There are no shops there yet",
+        noShops: "There are no shops here yet",
         userProfile: "Your data",
         userId: "Yours id",
+        errorMessage: "Incorrect data was entered",
+        noProducts: "There are no products here yet",
+        ok: "Ok",
+        deletionError: "Deletion error",
+        associatedDataPresent: "Please delete associated data first",
+        noPurchases: "There are no purchases here yet",
+        noAttRequests: "There are no attention requests here yet",
+        noCompanies: "There are no companies here yet",
     },
     ua: {
         home: "Домашня",
@@ -106,6 +114,14 @@ const strings = new LocalizedStrings({
         noShops: "Тут зараз немає крамниць",
         userProfile: "Ваші дані",
         userId: "Ваш Id",
+        errorMessage: "Помилка. Некоретні дані",
+        noProducts: "Тут зараз немає товарів",
+        ok: "Ok",
+        deletionError: "Помилка видалення",
+        associatedDataPresent: "Для видалення будь ласка спочатку видаліть усі пов'язані данні",
+        noPurchases: "Тут зараз немає покупок",
+        noAttRequests: "Тут зараз немає запитів",
+        noCompanies: "Тут зараз немає компаній",
     }
 });
 

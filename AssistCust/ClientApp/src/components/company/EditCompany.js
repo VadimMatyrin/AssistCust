@@ -13,7 +13,8 @@ export class EditCompany extends Component {
             companyName: null,
             countryName: null,
             loading: false,
-            redirect: false
+            redirect: false,
+            errorMessage: null
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,7 +50,8 @@ export class EditCompany extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            errorMessage: null
         });
     }
 
@@ -63,15 +65,31 @@ export class EditCompany extends Component {
             name: this.state.companyName,
             country: this.state.countryName
         }
-        const responseCode = await fetchDataService.updateCompany(company);
-        if (responseCode === 204) {
+        try {
+            if (company.name.length < 3) {
+                throw "Validation error";
+            }
+            const responseCode = await fetchDataService.updateCompany(company);
+            if (responseCode === 204) {
+                this.setState({
+                    redirect: true
+                });
+            }
+            if (responseCode === 500) {
+                this.setState({
+                    errorMessage: strings.errorMessage
+                });
+            }
             this.setState({
-                redirect: true
+                loading: false
+            });
+        } catch (e) {
+            this.setState({
+                loading: false,
+                errorMessage: strings.errorMessage
             });
         }
-        this.setState({
-            loading: false
-        });
+
     }
 
     render() {
@@ -85,12 +103,13 @@ export class EditCompany extends Component {
         }
         return (
             <fieldset disabled={this.state.loading}>
+                {this.state.errorMessage && <span style={{ color: "red" }}>{this.state.errorMessage}</span>}
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
                         <div className="col-sm-2">
                             <label for="companyName">
                                 {strings.name}:
-                        </label>
+                            </label>
                         </div>
                         <div className="col-sm-6">
                             <input

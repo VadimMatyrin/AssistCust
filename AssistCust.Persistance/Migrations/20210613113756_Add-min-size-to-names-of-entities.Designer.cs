@@ -4,14 +4,16 @@ using AssistCust.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AssistCust.Persistance.Migrations
 {
     [DbContext(typeof(AssistCustDbContext))]
-    partial class AssistCustDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210613113756_Add-min-size-to-names-of-entities")]
+    partial class Addminsizetonamesofentities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,7 +144,7 @@ namespace AssistCust.Persistance.Migrations
                     b.Property<DateTime?>("RegistrationTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 13, 11, 44, 33, 952, DateTimeKind.Utc).AddTicks(4052));
+                        .HasDefaultValue(new DateTime(2021, 6, 13, 11, 37, 55, 996, DateTimeKind.Utc).AddTicks(6908));
 
                     b.HasKey("Id");
 
@@ -197,7 +199,7 @@ namespace AssistCust.Persistance.Migrations
                     b.Property<DateTime>("PurchaseTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 13, 11, 44, 33, 963, DateTimeKind.Utc).AddTicks(9775));
+                        .HasDefaultValue(new DateTime(2021, 6, 13, 11, 37, 56, 3, DateTimeKind.Utc).AddTicks(2921));
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -288,7 +290,7 @@ namespace AssistCust.Persistance.Migrations
                     b.Property<DateTime>("RegistrationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 13, 11, 44, 33, 968, DateTimeKind.Utc).AddTicks(6514));
+                        .HasDefaultValue(new DateTime(2021, 6, 13, 11, 37, 56, 6, DateTimeKind.Utc).AddTicks(5265));
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

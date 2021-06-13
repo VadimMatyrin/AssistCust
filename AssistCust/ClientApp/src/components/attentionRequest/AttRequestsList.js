@@ -5,6 +5,11 @@ import strings from '../../localization/localization';
 export class AttRequestsList extends Component {
 
     render() {
+        if (this.props.attRequests.length === 0) {
+            return (
+                <h2>{strings.noAttRequests}</h2>
+            );
+        }
         return (
             <ul className="list-group">
                 <li className="list-group-item">

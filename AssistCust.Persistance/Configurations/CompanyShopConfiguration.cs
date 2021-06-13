@@ -10,7 +10,7 @@ namespace AssistCust.Persistance.Configurations
         {
             builder.Property(e => e.ShopName)
                 .IsRequired()
-                .HasMaxLength(15);
+                .HasMaxLength(35);
 
             builder.Property(e => e.AddressField1)
                 .IsRequired()

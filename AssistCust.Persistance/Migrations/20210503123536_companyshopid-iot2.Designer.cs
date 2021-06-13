@@ -4,14 +4,16 @@ using AssistCust.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AssistCust.Persistance.Migrations
 {
     [DbContext(typeof(AssistCustDbContext))]
-    partial class AssistCustDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210503123536_companyshopid-iot2")]
+    partial class companyshopidiot2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,8 +72,8 @@ namespace AssistCust.Persistance.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(35)")
-                        .HasMaxLength(35);
+                        .HasColumnType("nvarchar(15)")
+                        .HasMaxLength(15);
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -111,8 +113,8 @@ namespace AssistCust.Persistance.Migrations
 
                     b.Property<string>("ShopName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(35)")
-                        .HasMaxLength(35);
+                        .HasColumnType("nvarchar(15)")
+                        .HasMaxLength(15);
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -142,7 +144,7 @@ namespace AssistCust.Persistance.Migrations
                     b.Property<DateTime?>("RegistrationTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 13, 11, 44, 33, 952, DateTimeKind.Utc).AddTicks(4052));
+                        .HasDefaultValue(new DateTime(2021, 5, 3, 12, 35, 35, 984, DateTimeKind.Utc).AddTicks(7550));
 
                     b.HasKey("Id");
 
@@ -163,13 +165,13 @@ namespace AssistCust.Persistance.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(35)")
-                        .HasMaxLength(35);
+                        .HasColumnType("nvarchar(15)")
+                        .HasMaxLength(15);
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -197,7 +199,7 @@ namespace AssistCust.Persistance.Migrations
                     b.Property<DateTime>("PurchaseTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 13, 11, 44, 33, 963, DateTimeKind.Utc).AddTicks(9775));
+                        .HasDefaultValue(new DateTime(2021, 5, 3, 12, 35, 35, 993, DateTimeKind.Utc).AddTicks(8766));
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -288,7 +290,7 @@ namespace AssistCust.Persistance.Migrations
                     b.Property<DateTime>("RegistrationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 13, 11, 44, 33, 968, DateTimeKind.Utc).AddTicks(6514));
+                        .HasDefaultValue(new DateTime(2021, 5, 3, 12, 35, 35, 997, DateTimeKind.Utc).AddTicks(4393));
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

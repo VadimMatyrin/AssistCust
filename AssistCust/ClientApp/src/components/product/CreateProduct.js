@@ -16,7 +16,8 @@ export class CreateProduct extends Component {
             price: 0,
             companyId: companyId,
             loading: false,
-            redirect: false
+            redirect: false,
+            errorMessage: null
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,7 +29,8 @@ export class CreateProduct extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            errorMessage: null
         });
     }
 
@@ -43,15 +45,26 @@ export class CreateProduct extends Component {
             price: parseFloat(this.state.price),
             companyId: this.state.companyId,
         }
-        const createdId = await fetchDataService.createProduct(product);
-        if (createdId) {
+        try {
+            if (product.name.length < 3) {
+                throw "Validation error";
+            }
+            const createdId = await fetchDataService.createProduct(product);
+            if (createdId) {
+                this.setState({
+                    redirect: true
+                });
+            }
             this.setState({
-                redirect: true
+                loading: false
+            });
+        } catch (e) {
+            this.setState({
+                loading: false,
+                errorMessage: strings.errorMessage
             });
         }
-        this.setState({
-            loading: false
-        });
+
     }
 
     render() {
@@ -61,6 +74,7 @@ export class CreateProduct extends Component {
         }
         return (
             <fieldset disabled={this.state.loading}>
+                {this.state.errorMessage && <span style={{ color: "red" }}>{this.state.errorMessage}</span>}
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
                         <div className="col-sm-2">

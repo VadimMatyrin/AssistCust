@@ -18,7 +18,8 @@ export class EditShop extends Component {
             userId: null,
             loading: false,
             redirect: false,
-            redirectTo: null
+            redirectTo: null,
+            errorMessage: null
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -66,7 +67,8 @@ export class EditShop extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            errorMessage: null
         });
     }
 
@@ -84,15 +86,31 @@ export class EditShop extends Component {
             addressField2: this.state.addressField2,
             userId: this.state.userId,
         }
-        const responseCode = await fetchDataService.updateShop(shop);
-        if (responseCode === 204) {
+        try {
+            if (shop.shopName.length < 3) {
+                throw "Validation error";
+            }
+            const responseCode = await fetchDataService.updateShop(shop);
+            if (responseCode === 204) {
+                this.setState({
+                    redirect: true
+                });
+            }
+            if (responseCode === 500) {
+                this.setState({
+                    errorMessage: strings.errorMessage
+                });
+            }
             this.setState({
-                redirect: true
+                loading: false
+            });
+        } catch (e) {
+            this.setState({
+                loading: false,
+                errorMessage: strings.errorMessage
             });
         }
-        this.setState({
-            loading: false
-        });
+
     }
 
     render() {
@@ -106,6 +124,7 @@ export class EditShop extends Component {
         }
         return (
             <fieldset disabled={this.state.loading}>
+                {this.state.errorMessage && <span style={{ color: "red" }}>{this.state.errorMessage}</span>}
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
                         <div className="col-sm-2">

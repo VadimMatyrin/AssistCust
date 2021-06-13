@@ -19,7 +19,7 @@ export class Company extends Component {
         this.state = {
             loading: false,
             showShops: false,
-            showProducts: false,
+            showProducts: false
         };
         this.submit = this.submit.bind(this);
         this.deleteCompany = this.deleteCompany.bind(this);
@@ -32,6 +32,17 @@ export class Company extends Component {
         const responseCode = await fetchDataService.deleteCompany(companyId);
         if (responseCode === 204) {
             this.props.triggerCompaniesFetch();
+        }
+        if (responseCode === 500) {
+            confirmAlert({
+                title: strings.deletionError,
+                message: strings.associatedDataPresent,
+                buttons: [
+                    {
+                        label: strings.ok
+                    }
+                ]
+            });
         }
         this.setState({
             loading: false
