@@ -61,6 +61,10 @@ const strings = new LocalizedStrings({
         noPurchases: "There are no purchases here yet",
         noAttRequests: "There are no attention requests here yet",
         noCompanies: "There are no companies here yet",
+        advantages: "Our advantages",
+        fastResponse: "Fast response",
+        deployment: "Quick deployment",
+        scalability: "Scalability",
     },
     ua: {
         home: "Домашня",
@@ -122,6 +126,10 @@ const strings = new LocalizedStrings({
         noPurchases: "Тут зараз немає покупок",
         noAttRequests: "Тут зараз немає запитів",
         noCompanies: "Тут зараз немає компаній",
+        advantages: "Наші переваги",
+        fastResponse: "Швидка відповідь",
+        deployment: "Зручне розгортання",
+        scalability: "Маштабованність",
     }
 });
 
