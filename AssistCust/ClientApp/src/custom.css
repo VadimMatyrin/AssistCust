@@ -1,14 +1,28 @@
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 code {
-  color: #E01A76;
+    color: #E01A76;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+body {
+    background: url(components/assets/background.jpg);
+    background-size: cover;
+}
+
+h1, h1, h3 {
+    text-shadow: white 0px 3px 2px;
+}
+
+form {
+    font-weight: 600;
+     text-shadow: white 0px 1px 3px;
 }

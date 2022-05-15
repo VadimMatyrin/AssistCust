@@ -16,7 +16,8 @@ export class CreateShop extends Component {
             addressField2: '',
             userId: '',
             loading: false,
-            redirect: false
+            redirect: false,
+            errorMessage: null
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,7 +29,8 @@ export class CreateShop extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            errorMessage: null
         });
     }
 
@@ -48,15 +50,26 @@ export class CreateShop extends Component {
             userId: this.state.userId,
             companyId: companyId,
         }
-        const createdId = await fetchDataService.createShop(shop);
-        if (createdId) {
+        try {
+            if (shop.shopName.length < 3) {
+                throw "Validation error";
+            }
+            const createdId = await fetchDataService.createShop(shop);
+            if (createdId) {
+                this.setState({
+                    redirect: true
+                });
+            }
             this.setState({
-                redirect: true
+                loading: false
+            });
+        } catch (e) {
+            this.setState({
+                loading: false,
+                errorMessage: strings.errorMessage
             });
         }
-        this.setState({
-            loading: false
-        });
+
     }
 
     render() {
@@ -66,6 +79,7 @@ export class CreateShop extends Component {
         }
         return (
             <fieldset disabled={this.state.loading}>
+                {this.state.errorMessage && <span style={{ color: "red" }}>{this.state.errorMessage}</span>}
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
                         <div className="col-sm-2">

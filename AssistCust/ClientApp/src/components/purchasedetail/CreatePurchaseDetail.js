@@ -15,7 +15,8 @@ export class CreatePurchaseDetail extends Component {
             productId: '',
             amount: 0,
             loading: false,
-            redirect: false
+            redirect: false,
+            errorMessage: null
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,7 +28,8 @@ export class CreatePurchaseDetail extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            errorMessage: null
         });
     }
 
@@ -41,16 +43,23 @@ export class CreatePurchaseDetail extends Component {
             amount: parseInt(this.state.amount),
             purchaseId: parseInt(this.state.purchaseId)
         }
-        debugger;
-        const purchaseDetailId = await fetchDataService.createPurchaseDetail(purchaseDetail);
-        if (purchaseDetailId) {
+        try {
+            const purchaseDetailId = await fetchDataService.createPurchaseDetail(purchaseDetail);
+            if (purchaseDetailId) {
+                this.setState({
+                    redirect: true
+                });
+            }
             this.setState({
-                redirect: true
+                loading: false
+            });
+        } catch (e) {
+            this.setState({
+                loading: false,
+                errorMessage: strings.errorMessage
             });
         }
-        this.setState({
-            loading: false
-        });
+
     }
 
     render() {
@@ -60,6 +69,7 @@ export class CreatePurchaseDetail extends Component {
         }
         return (
             <fieldset disabled={this.state.loading}>
+                {this.state.errorMessage && <span style={{ color: "red" }}>{this.state.errorMessage}</span>}
                 <form onSubmit={this.handleSubmit}>
                     <div class="form-group row">
                         <div class="col-sm-2">

@@ -33,6 +33,17 @@ export class Shop extends Component {
         if (responseCode === 204) {
             this.props.triggerShopsFetch();
         }
+        if (responseCode === 500) {
+            confirmAlert({
+                title: strings.deletionError,
+                message: strings.associatedDataPresent,
+                buttons: [
+                    {
+                        label: strings.ok
+                    }
+                ]
+            });
+        }
         this.setState({
             loading: false
         });

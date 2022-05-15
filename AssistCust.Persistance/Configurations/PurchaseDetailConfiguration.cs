@@ -16,7 +16,7 @@ namespace AssistCust.Persistance.Configurations
                 .WithMany(e => e.PurchaseDetails)
                 .HasForeignKey(d => d.ProductId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.ClientSetNull); ;
+                .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

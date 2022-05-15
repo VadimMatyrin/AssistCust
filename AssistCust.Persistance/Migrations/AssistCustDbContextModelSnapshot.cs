@@ -70,8 +70,8 @@ namespace AssistCust.Persistance.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasColumnType("nvarchar(35)")
+                        .HasMaxLength(35);
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -111,8 +111,8 @@ namespace AssistCust.Persistance.Migrations
 
                     b.Property<string>("ShopName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasColumnType("nvarchar(35)")
+                        .HasMaxLength(35);
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -130,6 +130,27 @@ namespace AssistCust.Persistance.Migrations
                     b.ToTable("CompanyShops");
                 });
 
+            modelBuilder.Entity("AssistCust.Domain.Entities.IoTDevice", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CompanyShopId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RegistrationTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2021, 6, 13, 11, 44, 33, 952, DateTimeKind.Utc).AddTicks(4052));
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyShopId");
+
+                    b.ToTable("IoTDevices");
+                });
+
             modelBuilder.Entity("AssistCust.Domain.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -142,13 +163,13 @@ namespace AssistCust.Persistance.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasColumnType("nvarchar(35)")
+                        .HasMaxLength(35);
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -176,7 +197,7 @@ namespace AssistCust.Persistance.Migrations
                     b.Property<DateTime>("PurchaseTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2019, 11, 6, 18, 38, 28, 779, DateTimeKind.Utc).AddTicks(6018));
+                        .HasDefaultValue(new DateTime(2021, 6, 13, 11, 44, 33, 963, DateTimeKind.Utc).AddTicks(9775));
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -267,7 +288,7 @@ namespace AssistCust.Persistance.Migrations
                     b.Property<DateTime>("RegistrationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2019, 11, 6, 18, 38, 28, 788, DateTimeKind.Utc).AddTicks(4428));
+                        .HasDefaultValue(new DateTime(2021, 6, 13, 11, 44, 33, 968, DateTimeKind.Utc).AddTicks(6514));
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -544,6 +565,15 @@ namespace AssistCust.Persistance.Migrations
                     b.HasOne("AssistCust.Domain.Entities.User", "User")
                         .WithMany("CompanyShops")
                         .HasForeignKey("UserId")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AssistCust.Domain.Entities.IoTDevice", b =>
+                {
+                    b.HasOne("AssistCust.Domain.Entities.CompanyShop", "CompanyShop")
+                        .WithMany("IoTDevices")
+                        .HasForeignKey("CompanyShopId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

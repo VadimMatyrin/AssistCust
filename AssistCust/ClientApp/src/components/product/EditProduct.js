@@ -14,7 +14,8 @@ export class EditProduct extends Component {
             price: null,
             description: null,
             loading: false,
-            redirect: false
+            redirect: false,
+            errorMessage: null
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -53,7 +54,8 @@ export class EditProduct extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            errorMessage: null
         });
     }
 
@@ -68,15 +70,31 @@ export class EditProduct extends Component {
             price: parseFloat(this.state.price),
             description: this.state.description
         }
-        const createdId = await fetchDataService.updateProduct(product);
-        if (createdId) {
+        try {
+            if (product.name.length < 3) {
+                throw "Validation error";
+            }
+            const responseCode = await fetchDataService.updateProduct(product);
+            if(responseCode === 204) {
+                this.setState({
+                    redirect: true
+                });
+            }
+            if (responseCode === 500) {
+                this.setState({
+                    errorMessage: strings.errorMessage
+                });
+            }
             this.setState({
-                redirect: true
+                loading: false
+            });
+        } catch (e) {
+            this.setState({
+                loading: false,
+                errorMessage: strings.errorMessage
             });
         }
-        this.setState({
-            loading: false
-        });
+
     }
 
     render() {
@@ -90,6 +108,7 @@ export class EditProduct extends Component {
         }
         return (
             <fieldset disabled={this.state.loading}>
+                {this.state.errorMessage && <span style={{ color: "red" }}>{this.state.errorMessage}</span>}
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
                         <div className="col-sm-2">

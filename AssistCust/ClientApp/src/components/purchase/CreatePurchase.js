@@ -15,7 +15,8 @@ export class CreatePurchase extends Component {
             purchaseTime: '',
             companyShopId: companyShopId,
             loading: false,
-            redirect: false
+            redirect: false,
+            errorMessage: null
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,7 +28,8 @@ export class CreatePurchase extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
+            errorMessage: null
         });
     }
 
@@ -41,15 +43,23 @@ export class CreatePurchase extends Component {
             purchaseTime: `${this.state.purchaseTime}:00Z`,
             companyShopId: this.state.companyShopId,
         }
-        const purchaseId = await fetchDataService.createPurchase(purchase);
-        if (purchaseId) {
+        try {
+            const purchaseId = await fetchDataService.createPurchase(purchase);
+            if (purchaseId) {
+                this.setState({
+                    redirect: true
+                });
+            }
             this.setState({
-                redirect: true
+                loading: false
+            });
+        } catch (e) {
+            this.setState({
+                loading: false,
+                errorMessage: strings.errorMessage
             });
         }
-        this.setState({
-            loading: false
-        });
+
     }
 
     render() {
@@ -59,6 +69,7 @@ export class CreatePurchase extends Component {
         }
         return (
             <fieldset disabled={this.state.loading}>
+                {this.state.errorMessage && <span style={{ color: "red" }}>{this.state.errorMessage}</span>}
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
                         <div className="col-sm-2">

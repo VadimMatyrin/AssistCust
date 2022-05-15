@@ -24,7 +24,7 @@ export class PurchasesPage extends Component {
 
     render() {
         return (
-            <div className="container rounded border border-secondary" style={{ marginTop: "20px", marginBottom: "20px", padding: "10px" }}>
+            <div className="container rounded border border-secondary" style={{ marginTop: "20px", marginBottom: "20px", padding: "10px", backgroundColor: "white" }}>
                 <div className="row">
                     <div className="col-lg-10">
                         <h3> {this.props.shop.shopName} {strings.purchases}:</h3>

@@ -14,6 +14,7 @@ namespace AssistCust.Application.Interfaces
         DbSet<PurchaseDetail> PurchaseDetails { get; set; }
         DbSet<User> Users { get; set; }
         DbSet<AttentionRequest> AttentionRequests { get; set; }
+        DbSet<IoTDevice> IoTDevices { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

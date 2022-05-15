@@ -40,8 +40,6 @@ namespace AssistCust
             // Add MediatR
             services.AddMediatR(typeof(GetProductQueryHandler).GetTypeInfo().Assembly);
             services.AddTransient(typeof(IUserAccessService), typeof(UserAccessService));
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
-            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
             services.AddDbContext<IAssistDbContext, AssistCustDbContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("AssistCustDatabase")));
