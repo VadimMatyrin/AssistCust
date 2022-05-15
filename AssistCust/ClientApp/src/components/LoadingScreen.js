@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import Loader from 'react-loader-spinner'
+import { Oval } from 'react-loader-spinner'
 
 export class LoadingScreen extends React.Component {
     render() {
@@ -20,8 +20,7 @@ export class LoadingScreen extends React.Component {
                     transform: 'translate(-50%, -50%)',
                     zIndex: 99999
                 }}>
-                    <Loader
-                        type="Oval"
+                    <Oval
                         color="#0044ff"
                         height={100}
                         width={100}
